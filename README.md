@@ -10,3 +10,8 @@ Hadrien Ovize 40025905             SECTION: SB Github: hadrieno98
 Aline Kurkdjian 40131528           SECTION: SC Github: alinekurkdjian  
 Jonathan Tcharfajian 40127067  SECTION: SA Github: tchardino  
 
+The languages used in this project will be:  
+-PHP  
+-CSS  
+-SQL  
+-HTML  
