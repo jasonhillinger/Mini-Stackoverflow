@@ -1,5 +1,5 @@
 # soen341project
-This repositories purpose is to create an imitation of Stackoverflow but with limited features.
+This repository's purpose is to create an imitation of Stackoverflow but with limited features.
 
 Jonathan Perlman   40094762    SECTION: SA  Github: jonman5     
 Jason Hillinger  40104298           SECTION: SC Github: jasonhillinger  
