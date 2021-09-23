@@ -18,9 +18,14 @@ The languages used in this project will be:
 -HTML  
 
 This repository contains a project for SOEN 341.
+
 The purpose of this project is to create a website that has similar features to StackOverflow and similar websites.
+
 The main objective of the project is to implement the following core features for the website.
+
 Ability for users to post a question.
+
 Ability for users to post an answer to a question.
+
 Ability for users to vote on questions and answers.
 
