@@ -1,5 +1,5 @@
 # soen341project
-This repositories purpose is to create an imitation of Stackoverflow but with limited features.
+This repository's purpose is to create an imitation of Stackoverflow but with limited features.
 
 Jonathan Perlman   40094762    SECTION: SA  Github: jonman5     
 Jason Hillinger  40104298           SECTION: SC Github: jasonhillinger  
@@ -10,3 +10,8 @@ Hadrien Ovize 40025905             SECTION: SB Github: hadrieno98
 Aline Kurkdjian 40131528           SECTION: SC Github: alinekurkdjian  
 Jonathan Tcharfajian 40127067  SECTION: SA Github: tchardino  
 
+The languages used in this project will be:  
+-PHP  
+-CSS  
+-SQL  
+-HTML  
