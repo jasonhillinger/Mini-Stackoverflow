@@ -5,12 +5,12 @@ The purpose of this project is to create a website that has similar features to 
 ## Objective
 The main objective of the project is to implement the following core features for the website.  
 ### Core features
-- Ability for users to post a question.  
-- Ability for users to post an answer to a question.  
-- Ability for users to vote on questions and answers.  
+- Asking and answering questions
+- Voting on the answers
+- Accepting the best answer
 ## Team Members and Git Username
-Jonathan Perlman   40094762    SECTION: SA  Github: jonman5     
-Jason Hillinger  40104298           SECTION: SC Github: jasonhillinger  
+(Group Leader) Jason Hillinger  40104298           SECTION: SC Github: jasonhillinger 
+Jonathan Perlman   40094762    SECTION: SA  Github: jonman5      
 Amanda Marsillo   40132388       SECTION: SA Github: ama363   
 Noor Hammodi 40061760            SECTION: SA Github: noorhammodi  
 Antoine Gaubil 40115052            SECTION: SD Github: antoinegaubil   
