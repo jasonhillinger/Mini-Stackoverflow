@@ -9,7 +9,9 @@ The main objective of the project is to implement the following core features fo
 - Voting on the answers
 - Accepting the best answer
 ## Team Members and Git Username
-(Group Leader) Jason Hillinger  40104298           SECTION: SC Github: jasonhillinger 
+(Group Leader)
+Jason Hillinger  40104298      SECTION: SC Github: jasonhillinger 
+
 Jonathan Perlman   40094762    SECTION: SA  Github: jonman5      
 Amanda Marsillo   40132388       SECTION: SA Github: ama363   
 Noor Hammodi 40061760            SECTION: SA Github: noorhammodi  
