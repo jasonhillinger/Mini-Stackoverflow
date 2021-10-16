@@ -3,8 +3,6 @@
 $errors = array();
 
 // Registering a new person to the database
-
-//$userID = mysqli_real_escape_string($db, $_POST['userID']); //not sure if this should be added or handled by db?
 $username = mysqli_real_escape_string($db, $_POST['username']);
 $email = mysqli_real_escape_string($db, $_POST['Email']);
 $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -17,14 +15,13 @@ $user = mysqli_fetch_assoc($results);
 
 if($user){
 
-  //PRIVATEKEY is a placeholder variable for a private key  
   if($user['email'] === $email){array_push($errors, "Account already exist with this email!");}
   if($user['username'] === $username){array_push($errors, "Account already exist with this username!");}
 
 }
   if(count($errors) == 0){
 
-    $query = "INSERT INTO users (userID, username, password, email) VALUES ('$userID','$username','$password','$email'"; //This is where the SQL querie will go (Insert statement), to add the person if no errors
+    $query = "INSERT INTO users (username, password, email) VALUES ('$username','$password','$email')"; //This is where the SQL querie will go (Insert statement), to add the person if no errors
     mysqli_query($db,$query);
     
     // redirect to submitted page
