@@ -2,7 +2,7 @@
 include_once 'addRegistration.php';
 ?>
 
-
+<!DOCTYPE html>
 <html lang="en">
 <form action="#" method="post">
   <h2>Sign Up</h2>
