@@ -14,7 +14,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$result = mysqli_query($db, $email_check_query);
 	$user = mysqli_fetch_assoc($result);
 	$password_from_db = $user['password'];
-	echo ("<br>Password = " . $user['password'] . "<br>");
 
 	if(!$user){
 		array_push($errors, "No account with this email can be found.<br>");
@@ -24,6 +23,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	}
 	else{
 		$_SESSION["userID"] = $user['userID'];
+		$_SESSION["username"] = $user['username'];
+		$_SESSION["email"] = $user['email'];
 		
 		
 		echo("User logged in succesfully.<br>Welcome!<br>You will be redirected to the homepage momentarily.<br>");

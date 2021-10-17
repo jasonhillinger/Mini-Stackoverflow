@@ -150,9 +150,14 @@ session_start(); //start a new session if not already started
 
     <div class="navbar">
         <a href="index.php">Home</a>
-		<a href="login.php">Login</a>
-        <a href="registration.php">Registration</a>
-        <a href="#" class="right">Link</a>
+        <a href="registration.php">Register</a>
+        <?php
+		if (isset($_SESSION["userID"])){
+			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+		}
+		else{echo("<a href=\"login.php\" class=\"right\">Login</a>");}
+		?>
     </div>
     <div class="container">
         <h2> A fast and efficient website to ask your Tech questions </h2>
