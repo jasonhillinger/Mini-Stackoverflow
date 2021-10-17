@@ -16,8 +16,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	if($user){
 
-	  if($user['email'] === $email){array_push($errors, "Account already exist with this email!<br>");}
-	  if($user['username'] === $username){array_push($errors, "Account already exist with this username!<br>");}
+	  if($user['email'] === $email){array_push($errors, "Account already exists with this email!<br>");}
+	  if($user['username'] === $username){array_push($errors, "Account already exists with this username!<br>");}
 
 	}
 	  if(count($errors) == 0){
@@ -26,12 +26,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		mysqli_query($db,$query);
 		
 
-		echo("User account created succesfully.<br>");
-		sleep(3);
+		echo("User account created succesfully.<br>You will be redirected to the homepage momentarily.<br>");
+		sleep(2);
 			// redirect to home page
 			// may be changed depending on html implementation
-		header("Location: index.html");
-		
+		echo("<meta http-equiv=\"refresh\" content=\"0; url=index.html\" />");
 
 	  }
 	  else{
@@ -41,6 +40,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		while(count($errors) != 0){
 			echo(array_pop($errors));
 		}
-		echo("User account creation failed. Please relaod this page and try again.<br>");
+		echo("User account creation failed. Please try again.<br>Page will refresh momentarily.<br>");
+		echo("<meta http-equiv=\"refresh\" content=\"5; url=registration.php\" />");
+
 	}
 }
+?>
