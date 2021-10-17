@@ -21,9 +21,9 @@ Aline Kurkdjian 40131528           SECTION: SC Github: alinekurkdjian
 Jonathan Tcharfajian 40127067  SECTION: SA Github: tchardino  
 ## Languages and Techniques
 The languages used in this project will be:  
--PHP  
--CSS  
--SQL  
--HTML   
--Bootstrap  
--JS  
+- PHP  
+- CSS  
+- SQL  
+- HTML   
+- Bootstrap  
+- JS  
