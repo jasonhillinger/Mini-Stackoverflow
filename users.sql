@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 192.168.1.170
--- Generation Time: Oct 17, 2021 at 04:07 AM
+-- Generation Time: Oct 18, 2021 at 03:48 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `users` (
-  `userID` int(11) NOT NULL,
+  `userID` bigint(20) UNSIGNED NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
   `email` text NOT NULL
@@ -42,8 +42,10 @@ CREATE TABLE `users` (
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`userID`),
-  ADD UNIQUE KEY `username` (`username`) USING HASH;
+  ADD PRIMARY KEY (`userID`) USING BTREE,
+  ADD UNIQUE KEY `userID` (`userID`),
+  ADD UNIQUE KEY `username` (`username`) USING HASH,
+  ADD UNIQUE KEY `email` (`email`) USING HASH;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -53,7 +55,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
