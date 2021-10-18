@@ -19,7 +19,7 @@ session_start(); //start a new session if not already started
             margin: 0;
         }
         /* Style the header */
-        
+
         .header img {
             width: 1000px;
             height: 200px;
@@ -34,7 +34,7 @@ session_start(); //start a new session if not already started
             text-align: center;
         }
         /* Increase the font size of the h1 element */
-        
+
         .header h1 {
             position: relative;
             top: 18px;
@@ -43,13 +43,13 @@ session_start(); //start a new session if not already started
             text-align: center;
         }
         /* Style the top navigation bar */
-        
+
         .navbar {
             overflow: hidden;
             background-color: rgb(15, 184, 23);
         }
         /* Style the navigation bar links */
-        
+
         .navbar a {
             float: left;
             display: block;
@@ -59,28 +59,28 @@ session_start(); //start a new session if not already started
             text-decoration: none;
         }
         /* Right-aligned link */
-        
+
         .navbar a.right {
             float: right;
         }
         /* Change color on hover */
-        
+
         .navbar a:hover {
             background-color: #ddd;
             color: black;
         }
-        
+
         * {
             margin: 0;
             padding: auto;
             font-family: sans-serif;
             outline: none;
         }
-        
+
         body {
             background-color: black;
         }
-        
+
         .container {
             border: 3px solid #303030;
             padding: 20px;
@@ -89,7 +89,7 @@ session_start(); //start a new session if not already started
             border-radius: 4px;
             position: relative;
         }
-        
+
         .voting {
             /*position: relative;
             border: 3px solid#303030;
@@ -100,12 +100,12 @@ session_start(); //start a new session if not already started
             margin: 100px auto;
             text-align: center;
         }
-        
+
         .downvoting {
             margin: 100px auto;
             text-align: center;
         }
-        
+
         .button {
             /*color: aquamarine;
             background: none;
@@ -122,15 +122,15 @@ session_start(); //start a new session if not already started
             border: 1px solid lightblue;
             color: lightblue;
         }
-        
+
         button :active {
             color: cadetblue;
         }
-        
+
         .col-sm-9 {
             border: thick solid rgb(15, 184, 23);
         }
-        
+
         footer {
             text-align: center;
             padding: 3px;
@@ -150,14 +150,16 @@ session_start(); //start a new session if not already started
 
     <div class="navbar">
         <a href="index.php">Home</a>
-        <a href="registration.php">Register</a>
         <?php
-		if (isset($_SESSION["userID"])){
-			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
-			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
-		}
-		else{echo("<a href=\"login.php\" class=\"right\">Login</a>");}
-		?>
+    		if (isset($_SESSION["userID"])){
+    			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+    			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+    		}
+    		else{
+          echo("<a href=\"registration.php\">Register</a>");
+          echo("<a href=\"login.php\" class=\"right\">Login</a>");
+        }
+		    ?>
     </div>
     <div class="container">
         <h2> A fast and efficient website to ask your Tech questions </h2>
@@ -194,7 +196,7 @@ session_start(); //start a new session if not already started
                         <div class="panel panel-default text-left">
                             <div class="panel-body">
                                 <p contenteditable="true">Status: Feel like asking a question???</p>
-                               
+
 
                             </div>
                         </div>
@@ -247,7 +249,7 @@ session_start(); //start a new session if not already started
         <h5></h5>
     </footer>
     <footer class="footer">
-        <p>Project by Team 01-<a> https://github.com/jasonhillinger/soen341project</a></p>
+        <p>Project by Team 01 for SOEN 341  <a>https://github.com/jasonhillinger/soen341project</a></p>
     </footer>
 </body>
 

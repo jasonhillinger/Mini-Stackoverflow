@@ -4,45 +4,35 @@ session_start(); //start a new session if not already started
 $errors = array();
 
 // Verifying data entered is correct (with data in database) and logging in the user
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-	$email = mysqli_real_escape_string($db, $_POST['Email']);
+if($_SERVER["REQUEST_METHOD"] == "POST"){ //this condition means the following php code will only execute after data is stored using POST in the html form
+	$email = strtolower(mysqli_real_escape_string($db, $_POST['Email']));
 	$password = mysqli_real_escape_string($db, $_POST['password']);
 	$password_from_db =  "";
-	//check db for existing person unique values
-	$email_check_query = "SELECT * FROM users WHERE email = '$email'"; 
-	
+	//check db for existing person using unique email
+	$email_check_query = "SELECT * FROM users WHERE email = '$email'";
 	$result = mysqli_query($db, $email_check_query);
-	$user = mysqli_fetch_assoc($result);
-	$password_from_db = $user['password'];
+	$user = mysqli_fetch_assoc($result); //retrieves all user data stored in the result from SQL query
+	$password_from_db = $user['password']; //get the password stored in db
 
-	if(!$user){
+	if(!$user){ //if not user is found for this email address
 		array_push($errors, "No account with this email can be found.<br>");
 	}
-	else if ($password_from_db != $password){
+	else if ($password_from_db != $password){ //if password entered does not match password stored in db
 		array_push($errors, "Wrong password.<br>");
 	}
 	else{
+    //Login the user by saving the logged in user data to the _SESSION array
 		$_SESSION["userID"] = $user['userID'];
 		$_SESSION["username"] = $user['username'];
 		$_SESSION["email"] = $user['email'];
-		
-		
-		echo("User logged in succesfully.<br>Welcome!<br>You will be redirected to the homepage momentarily.<br>");
-		sleep(2);
-			// redirect to home page
-			// may be changed depending on html implementation
-		echo("<meta http-equiv=\"refresh\" content=\"0; url=index.php\" />");
 	}
 	if(count($errors) != 0){
-		  //Failed.php is a placeholder for an unsuccesful request
-		  //May be changed depending on html implementation
-		//header("Location: Failed.php");
+    //If any errors were caught, print out the corresponding error messages, and refresh page
 		while(count($errors) != 0){
 			echo(array_pop($errors));
 		}
-		echo("User login failed. Please try again.<br>Page will refresh momentarily.<br>");
+		echo("<b>User login failed.</b> Please try again.<br>Page will refresh momentarily.<br>");
 		echo("<meta http-equiv=\"refresh\" content=\"5; url=login.php\" />");
-
 	}
 }
 ?>
@@ -81,8 +71,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <p>
         <a href="registration.php">Create an Account</a>
       </p>
+      <p>
+        <?php
+        //Check if user is logged in, if so display welcome text and redirect to homepage
+        if (isset($_SESSION["username"])) {
+          echo("Login successful.<br>Welcome <strong>" . $_SESSION["username"] . "</strong>!  You will be redirected to the homepage momentarily.<br>");
+          echo("<meta http-equiv=\"refresh\" content=\"5; url=index.php\" />");
+        }
+        ?>
+      </p>
     </div>
   </form>
   </body>
 </html>
-

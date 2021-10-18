@@ -20,19 +20,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	  if($user['username'] === $username){array_push($errors, "Account already exists with this username!<br>");}
 
 	}
-	  if(count($errors) == 0){
+	if(count($errors) == 0){
 
 		$query = "INSERT INTO users (username, password, email) VALUES ('$username','$password','$email')"; //This is where the SQL querie will go (Insert statement), to add the person if no errors
 		mysqli_query($db,$query);
-		
 
-		echo("User account created succesfully.<br>You will be redirected to the homepage momentarily.<br>");
-		sleep(2);
+
+		echo("User account created succesfully.<br>You will be redirected to the login page momentarily.<br>");
+		//sleep(2);
 			// redirect to home page
 			// may be changed depending on html implementation
-		echo("<meta http-equiv=\"refresh\" content=\"0; url=index.html\" />");
+		echo("<meta http-equiv=\"refresh\" content=\"5; url=login.php\" />");
 
-	  }
+	}
 	  else{
 		  //Failed.php is a placeholder for an unsuccesful request
 		  //May be changed depending on html implementation
