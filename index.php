@@ -144,7 +144,7 @@ session_start(); //start a new session if not already started
 
     <div class="header">
         <img src="tech2.jpg" alt="logo" class="src">
-        <h1>Welcome to Tech hub</h1>
+        <h1>Welcome to Tech hut</h1>
 
     </div>
 
