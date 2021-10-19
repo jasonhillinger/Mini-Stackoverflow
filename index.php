@@ -212,7 +212,13 @@ session_start(); //start a new session if not already started
                     </div>
                     <div class="col-sm-9">
                         <div class="well">
-                            <p>Hey i have a question???</p>
+                        <label for="title" class="floatLabel">Title</label>
+                            <input id="title" name="title" type="text" required></br>
+                            <label for="question" class="floatLabel">Ask your question</label>
+                            <input id="question" name="question" type="text" style="height:120px; width:200px;" required>
+                            <input type="submit"> 
+
+			                
                             <div class="voting">
                                 <button id="upvote">Upvote: 0</button>
                                 <script src="mybutton.js"></script>
