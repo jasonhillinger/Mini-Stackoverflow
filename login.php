@@ -63,13 +63,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){ //this condition means the following p
       </p>
       <p>
         <label for="password" class="floatLabel">Password: </label>
-        <input id="password" name="password" type="password">
+        <input id="password" name="password" type="password" required autocomplete="current-password">
       </p>
       <p>
         <input type="submit" value="Login to My Account" id = "submit">
       </p>
       <p>
-        <a href="registration.php">Create an Account</a>
+        Dont't have an account? <a href="registration.php">Click here to create an account</a>
       </p>
       <p>
         <?php
