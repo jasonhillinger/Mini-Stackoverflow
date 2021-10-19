@@ -234,6 +234,17 @@ button.primaryContained:hover {
                                       </div><!-- End row -->
                                   <div class="row">
                                     <div class="col-6">
+			           <h1>comments</h1>
+
+<form>
+  <label for="fname">comment 1:</label>
+  <input type="text" id="comment1" name="comment1"><br><br>
+  <label for="lname">comment 2:</label>
+  <input type="text" id="comment2" name="comment2"><br><br>
+    <label for="lname">comment 3:</label>
+ <input type="text" id="comment3" name="comment3"><br><br>
+</form>
+
                                   <textarea type="text" class="input" placeholder="Write a comment" v-model="newItem" @keyup.enter="addItem()"></textarea>
                                       <button v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
                                     </div><!-- End col -->
