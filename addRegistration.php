@@ -5,7 +5,7 @@ $errors = array();
 // Registering a new person to the database
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$username = mysqli_real_escape_string($db, $_POST['username']);
-	$email = mysqli_real_escape_string($db, $_POST['Email']);
+	$email = mysqli_real_escape_string($db, strtolower($_POST['Email']));
 	$password = mysqli_real_escape_string($db, $_POST['password']);
 
 	//check db for existing person unique values
