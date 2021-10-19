@@ -26,7 +26,6 @@
 	display: block;
 	transition: all 1s;
 	border: block;
-	<h1>hello</h1>
 }
 .commentClicked {
 	min-height: 0px;
@@ -229,6 +228,14 @@ button.primaryContained:hover {
                                   <div class="row">
                                     <div class="col-6">
                                       <div class="comment">
+					      <form >
+  <label for="fname">comment 1:</label>
+  <input type="text" id="comment1" name="comment1"><br><br>
+  <label for="lname">comment 2:</label>
+  <input type="text" id="comment2" name="comment2"><br><br>
+    <label for="lname">comment 3:</label>
+ <input type="text" id="commen3" name="comment3"><br><br>
+</form>
                                     <p v-for="items in item" v-text="items"></p>
                                       </div><!--End Comment-->
                                       </div><!--End col -->
