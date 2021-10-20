@@ -1,6 +1,7 @@
 <?php
 include_once 'server.php';
 session_start(); //start a new session if not already started
+include_once 'posts.php';
 ?>
 
 <!DOCTYPE html>
@@ -254,7 +255,7 @@ session_start(); //start a new session if not already started
                                 <br>
                                 <input type="hidden" name="submitQuestion" value="1" />
                                 <textarea id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
-                                <textarea id="userquestion" name="userquestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
+                                <textarea id="userQuestion" name="userQuestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
                             </div>
                             <div class="modal-footer">
                               <input type="submit" class="btndefault" />
@@ -281,13 +282,17 @@ session_start(); //start a new session if not already started
                                 <script src="mybutton.js"></script>
                             </div>
                             <div class="panel-body">
-                              <label>Answer Question Below!</label>
-                              <textarea id="userquestion" name="userquestion" rows=4 cols="50" placeholder="Please respond to question here"></textarea>
+                              <form id="form" action="#" method="post">
+                                <label>Answer Question Below!</label>
+                                <input type="hidden" name="submitAnswer" value="1" />
+                                <input type="hidden" name="refQuestion" value="<?php /*@//TODO: php code goes here (echo questionID)*/ echo(10)?>" />
+                                <textarea id="userAnswer" name="userAnswer" rows=4 cols="50" required placeholder="Please respond to question here"></textarea>
                             </div>
-                            <div class="modal-footer">
-                              <input type="submit" class="btndefault"/>
+                              <div class="modal-footer">
+                                <input type="submit" class="btndefault"/>
+                              </form>
 
-                            </div>
+                              </div>
                         </div>
                     </div>
 
