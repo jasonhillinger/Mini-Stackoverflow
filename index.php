@@ -231,34 +231,19 @@ include_once 'posts.php';
     </div>-->
     <div class="container text-center">
         <div class="row">
-            <div class="col-sm-3 well">
-                <div class="well">
-                    <p><a href="#">My Profile</a></p>
-                    <img src="download.png" class="img-circle" height="65" width="65" alt="Avatar">
-                </div>
-                <div class="well">
-                    <p><a href="#">Tags</a></p>
-                    <p>
-                        <span class="label label-default">News Technology</span>
-                        <span class="label label-primary">IT questions</span>
-                        <span class="label label-success">HELP</span>
-                        <span class="label label-info">Q&A</span>
-
-                    </p>
-                </div>
-
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-6">
                         <div class="panel panel-default text-left">
                           <form id="form" action="#" method="post">
                             <div class="panel-body">
-                                <label>Enter a Question Below</label>
+                                <label>Have a Question?</label>
                                 <br>
                                 <input type="hidden" name="submitQuestion" value="1" />
-                                <textarea id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
-                                <textarea id="userQuestion" name="userQuestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
+                                <textarea class="form-control" id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
+                                <textarea class="form-control" id="userQuestion" name="userQuestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
                             </div>
                             <div class="modal-footer">
                               <input type="submit" class="btn btn-default" value="Submit Question">
@@ -266,13 +251,40 @@ include_once 'posts.php';
                           </form>
                         </div>
                     </div>
+                    <div class="col-sm-1">
+                    </div>
+                    <?php
+                    if (isset($_SESSION["userID"])){
+                        echo("            
+                    <div class=\"col-sm-3 well\">
+                    <div class=\"well\">
+                        <p><a href=\"#\">". $_SESSION["username"] ."</a></p>
+                    <img src=\"download.png\" class=\"img-circle\" height=\"65\" width=\"65\" alt=\"Avatar\">
+                    </div>
+                    <div class=\"well\">
+                        <p><a href=\"#\">Tags</a></p>
+                        <p>
+                            <span class=\"label label-default\">News Technology</span>
+                            <span class=\"label label-primary\">IT questions</span>
+                            <span class=\"label label-success\">HELP</span>
+                            <span class=\"label label-info\">Q&A</span>
+    
+                        </p>
+                    </div>
+                    </div>");
+                    }
+                    else{
+                    }
+                    ?>
                 </div>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-9">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-2">
                         <div class="well">
-                            <p>John Doe</p>
+                            <p><?php /*@//TODO: php code goes here (echo asker)*/ echo("John Smith")?></p>
                             <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
                         </div>
                     </div>
@@ -288,12 +300,16 @@ include_once 'posts.php';
                                     </div>
                                 </div>
                                 <div class = "panel-body">
+                                    <p id="left">This is where answer 1 content will go</p>
                                     <div class="modal-footer">
-                                        <p id="left">This is where answer 1 content will go</p>
                                     </div>
+                                    <p id="left">This is where answer 2 content will go</p>
                                     <div class="modal-footer">
-                                        <p id="left">This is where answer 2 content will go</p>
                                     </div>
+                                    <p id="left">This is where answer 3 content will go</p>
+                                    <div class="modal-footer">
+                                    </div>
+                                    <p id="left">This is where answer 4 content will go</p>
                                 </div>
                                 <div class="panel-footer">
                                     <div class="form-floating">
@@ -310,36 +326,9 @@ include_once 'posts.php';
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <p>john smith</p>
-                            <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
-                        </div>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="well">
-                            <p>hello guys! can ii ask a question???</p>
-                            <div class="voting">
-                                <button id="upvote">Upvote: 0</button>
-                                <script src="mybutton.js"></script>
-                            </div>
-							<div class="panel-body">
-                              <label>Answer Question Below!</label>
-                              <textarea id="userquestion" name="userquestion" rows=4 cols="50" placeholder="Please respond to question here"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                              <input type="submit" class="btndefault" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
             </div>
-
         </div>
+
     </div>
     <footer class="footer">
         <h5></h5>
