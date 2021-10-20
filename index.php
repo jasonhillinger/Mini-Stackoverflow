@@ -230,7 +230,7 @@ session_start(); //start a new session if not already started
             <div class="col-sm-3 well">
                 <div class="well">
                     <p><a href="#">My Profile</a></p>
-                    <img src="donwload.png" class="img-circle" height="65" width="65" alt="Avatar">
+                    <img src="download.png" class="img-circle" height="65" width="65" alt="Avatar">
                 </div>
                 <div class="well">
                     <p><a href="#">Tags</a></p>
