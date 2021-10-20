@@ -1,4 +1,3 @@
-<!--
 <?php
 include_once 'server.php';
 session_start(); //start a new session if not already started
@@ -6,7 +5,6 @@ session_start(); //start a new session if not already started
 
 <!DOCTYPE html>
 <html lang="en">
--->
 <head>
     <title>Tech Hut</title>
     <meta charset="UTF-8">
@@ -20,7 +18,61 @@ session_start(); //start a new session if not already started
             margin: 0;
         }
         /* Style the header */
-
+        .container {
+          max-width: 1000px;
+          margin: 30px auto;
+          background: #fff;
+          border-radius: 8px;
+          padding: 20px;
+        }
+        .containerForComments {
+          min-width: 450px;
+          max-width: 450px;
+          height: 300px;
+          margin: 30px auto;
+          background: #fff;
+          border-radius: 10px;
+          padding: 20px;
+          border : thick solid rgb(15,184,23);
+        }
+        .comment {
+          display: block;
+          transition: all 1s;
+        }
+        .commentClicked {
+          min-height: 0px;
+          border: 1px solid #eee;
+          border-radius: 5px;
+          padding: 5px 10px
+        }
+        .container textarea {
+          width: 100%;
+          border: none;
+          background: #E8E8E8;
+          padding: 5px 10px;
+          height: 50%;
+          border-radius: 5px 5px 0px 0px;
+          border-bottom: 2px solid rgb(15, 184, 23);
+          transition: all 0.5s;
+          margin-top: 15px;
+        }
+        button.primaryContained {
+          background:  rgb(15, 184, 23);
+          color: #fff;
+          padding: 10px 10px;
+          border: none;
+          margin-top: 0px;
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+          box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+          transition: 1s all;
+          font-size: 10px;
+          border-radius: 5px;
+        }
+        button.primaryContained:hover {
+          background: #9f2efc;
+        }
         .header img {
             width: 1000px;
             height: 200px;
@@ -130,6 +182,7 @@ session_start(); //start a new session if not already started
         }
 
         .col-sm-9 {
+            height = 100px;
             border: thick solid rgb(15, 184, 23);
         }
 
@@ -153,14 +206,14 @@ session_start(); //start a new session if not already started
     <div class="navbar">
         <a href="index.php">Home</a>
         <?php
-    		if (isset($_SESSION["userID"])){
-    			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
-    			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
-    		}
-    		else{
-          echo("<a href=\"registration.php\">Register</a>");
-          echo("<a href=\"login.php\" class=\"right\">Login</a>");
-        }
+      		if (isset($_SESSION["userID"])){
+      			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+      			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+      		}
+      		else{
+            echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
+            echo("<a href=\"login.php\" class=\"right\">Login</a>");
+          }
 		    ?>
     </div>
     <div class="container">
@@ -191,21 +244,22 @@ session_start(); //start a new session if not already started
                 </div>
 
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default text-left">
-			      <div class="panel-body">
-				  <label>Write Your Question Below</label>
-				  </br>
-				  <input type="hidden" name="submitQuestion" value="1" />
-				  <textarea id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
-				  </br></br>
-				  <textarea id="userquestion" name="userquestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
-			      </div>
-			      <div class="modal-footer">
-				<input type="submit" class="btndefault" />
-			      </div>
+                          <form id="form" action="#" method="post">
+                            <div class="panel-body">
+                                <label>Enter a Question Below</label>
+                                <br>
+                                <input type="hidden" name="submitQuestion" value="1" />
+                                <textarea id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
+                                <textarea id="userquestion" name="userquestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                              <input type="submit" class="btndefault" />
+                            </div>
+                          </form>
                         </div>
                     </div>
                 </div>
@@ -220,7 +274,8 @@ session_start(); //start a new session if not already started
                     </div>
                     <div class="col-sm-9">
                         <div class="well">
-                            <p>Hey i have a question???</p>
+                            <h4> This is where question title will go</h4>
+                            <p>This is where question content will go</p>
                             <div class="voting">
                                 <button id="upvote">Upvote: 0</button>
                                 <script src="mybutton.js"></script>
@@ -231,7 +286,7 @@ session_start(); //start a new session if not already started
                             </div>
                             <div class="modal-footer">
                               <input type="submit" class="btndefault"/>
-							  
+
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 <?php
  include_once 'server.php';
-session_start(); //start a new session if not already started
+ session_start(); //start a new session if not already started
 $errors = array();
 
 // Verifying data entered is correct (with data in database) and logging in the user
