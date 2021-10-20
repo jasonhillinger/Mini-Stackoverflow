@@ -2,7 +2,7 @@
 include_once 'server.php';
 //session_start();
 $errors = array();
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+//mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 
 //title, questionText, asker, views, voteCount, bestAnswer
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $answerText = mysqli_real_escape_string($db, $_POST['userAnswer']);
 		if(count($errors) == 0){
       //do answer sql querie
-			$query = "INSERT INTO answers (refQuestion, answerText, answerer) VALUES ('$refQuestion','$answerText','$user')"; //This is where the SQL querie will go (Insert statement), to add the person if no errors
+			$query = "INSERT INTO answers (refQuestion, answerText, answerer) VALUES ('$refQuestion','$answerText','$user')"; //This is where the SQL query will go
 			mysqli_query($db,$query);
 
 

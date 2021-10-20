@@ -2,3 +2,4 @@
 .idea/modules.xml
 *.iml
 .idea/vcs.xml
+.idea/php.xml

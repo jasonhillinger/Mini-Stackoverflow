@@ -77,7 +77,7 @@ include_once 'posts.php';
         .header img {
             width: 1000px;
             height: 200px;
-            background: url("images/avatar.svg") no-repeat;
+            background: no-repeat;
             background-size: cover;
             border: 6px solid #333;
             margin: 20px;
@@ -193,6 +193,9 @@ include_once 'posts.php';
             background-color: rgb(15, 184, 23);
             color: white;
         }
+        #left {
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -258,7 +261,7 @@ include_once 'posts.php';
                                 <textarea id="userQuestion" name="userQuestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
                             </div>
                             <div class="modal-footer">
-                              <input type="submit" class="btndefault" />
+                              <input type="submit" class="btn btn-default" value="Submit Question">
                             </div>
                           </form>
                         </div>
@@ -275,24 +278,34 @@ include_once 'posts.php';
                     </div>
                     <div class="col-sm-9">
                         <div class="well">
-                            <h4> This is where question title will go</h4>
-                            <p>This is where question content will go</p>
-                            <div class="voting">
-                                <button id="upvote">Upvote: 0</button>
-                                <script src="mybutton.js"></script>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 id="left"> This is where question title will go</h4>
+                                    <p id="left">This is where question content will go</p>
+                                    <div class="voting">
+                                        <button id="upvote">Upvote: 0</button>
+                                        <script src="mybutton.js"></script>
+                                    </div>
+                                </div>
+                                <div class = "panel-body">
+                                    <div class="modal-footer">
+                                        <p id="left">This is where answer 1 content will go</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <p id="left">This is where answer 2 content will go</p>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="form-floating">
+                                        <form id="form" action="#" method="post">
+                                            <input type="hidden" name="submitAnswer" value="1" />
+                                            <input type="hidden" name="refQuestion" value="<?php /*@//TODO: php code goes here (echo questionID)*/ echo(10)?>" />
+                                            <textarea class="form-control" id="userAnswer" name="userAnswer" rows=2 cols="50" required placeholder="Answer question here"></textarea>
+                                            <input type="submit" class="btn btn-default" value="Submit Answer">
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="panel-body">
-                              <form id="form" action="#" method="post">
-                                <label>Answer Question Below!</label>
-                                <input type="hidden" name="submitAnswer" value="1" />
-                                <input type="hidden" name="refQuestion" value="<?php /*@//TODO: php code goes here (echo questionID)*/ echo(10)?>" />
-                                <textarea id="userAnswer" name="userAnswer" rows=4 cols="50" required placeholder="Please respond to question here"></textarea>
-                            </div>
-                              <div class="modal-footer">
-                                <input type="submit" class="btndefault"/>
-                              </form>
-
-                              </div>
                         </div>
                     </div>
 
