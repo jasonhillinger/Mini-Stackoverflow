@@ -1,3 +1,4 @@
+<!--
 <?php
 include_once 'server.php';
 session_start(); //start a new session if not already started
@@ -5,7 +6,7 @@ session_start(); //start a new session if not already started
 
 <!DOCTYPE html>
 <html lang="en">
-
+-->
 <head>
     <title>Tech Hut</title>
     <meta charset="UTF-8">
