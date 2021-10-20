@@ -38,7 +38,7 @@ session_start(); //start a new session if not already started
 
         .header h1 {
             position: relative;
-            top: 18px;
+            top: 0px;
             left: 10px;
             color: #ddd;
             text-align: center;
@@ -89,6 +89,7 @@ session_start(); //start a new session if not already started
             text-align: center;
             border-radius: 4px;
             position: relative;
+			background: rgb(255,255,255);
         }
 
         .voting {
@@ -145,7 +146,7 @@ session_start(); //start a new session if not already started
 
     <div class="header">
         <img src="tech2.jpg" alt="logo" class="src">
-        <h1>Welcome to Tech hut</h1>
+        <h1><b>Welcome to Tech hut</b></h1>
 
     </div>
 
@@ -163,7 +164,7 @@ session_start(); //start a new session if not already started
 		    ?>
     </div>
     <div class="container">
-        <h2> A fast and efficient website to ask your Tech questions </h2>
+        <h2><b> A fast and efficient website to ask your Tech questions </b></h2>
         <img src="" />
     </div>
 
@@ -190,16 +191,16 @@ session_start(); //start a new session if not already started
                 </div>
 
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default text-left">
 			      <div class="panel-body">
 				  <label>Write Your Question Below</label>
-				  <br>
+				  </br>
 				  <input type="hidden" name="submitQuestion" value="1" />
 				  <textarea id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
-
+				  </br></br>
 				  <textarea id="userquestion" name="userquestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
 			      </div>
 			      <div class="modal-footer">
@@ -209,29 +210,32 @@ session_start(); //start a new session if not already started
                     </div>
                 </div>
             </div>
+            <div class="col-sm-7">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="well">
                             <p>John Doe</p>
-                            <img src="johndoe.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                            <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
                         </div>
                     </div>
                     <div class="col-sm-9">
                         <div class="well">
-                        <label for="title" class="floatLabel">Title</label>
-                            <input id="title" name="title" type="text" required></br>
-                            <label for="question" class="floatLabel">Ask your question</label>
-                            <input id="question" name="question" type="text" style="height:120px; width:200px;" required>
-                            <input type="submit"> 
-
-			                
+                            <p>Hey i have a question???</p>
                             <div class="voting">
                                 <button id="upvote">Upvote: 0</button>
                                 <script src="mybutton.js"></script>
                             </div>
+                            <div class="panel-body">
+                              <label>Answer Question Below!</label>
+                              <textarea id="userquestion" name="userquestion" rows=4 cols="50" placeholder="Please respond to question here"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                              <input type="submit" class="btndefault"/>
+							  
+                            </div>
                         </div>
-
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
@@ -246,6 +250,13 @@ session_start(); //start a new session if not already started
                             <div class="voting">
                                 <button id="upvote">Upvote: 0</button>
                                 <script src="mybutton.js"></script>
+                            </div>
+							<div class="panel-body">
+                              <label>Answer Question Below!</label>
+                              <textarea id="userquestion" name="userquestion" rows=4 cols="50" placeholder="Please respond to question here"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                              <input type="submit" class="btndefault" />
                             </div>
                         </div>
 
