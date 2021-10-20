@@ -189,20 +189,27 @@ session_start(); //start a new session if not already started
                 </div>
 
             </div>
-            <div class="col-sm-7">
-
+            <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default text-left">
-                            <div class="panel-body">
-                                <p contenteditable="true">Status: Feel like asking a question???</p>
+                            <form id="form" action="#" method="post">
+                              <div class="panel-body">
+                                  <label>Write Your Question Below</label>
+                                  <br>
+                                  <input type="hidden" name="submitQuestion" value="1" />
+                                  <textarea id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
 
-
-                            </div>
+                                  <textarea id="userquestion" name="userquestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
+                              </div>
+                              <div class="modal-footer">
+                                <input type="submit" class="btndefault" />
+                              </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
+            </div>
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="well">
