@@ -152,12 +152,12 @@ include_once 'posts.php';
             padding: 5px;
             display: flex;
             justify-content: center;*/
-            margin: 100px auto;
+            margin: 15px auto;
             text-align: center;
         }
 
         .downvoting {
-            margin: 100px auto;
+            margin: 5px auto;
             text-align: center;
         }
 
