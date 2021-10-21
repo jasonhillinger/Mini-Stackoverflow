@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	   $title = mysqli_real_escape_string($db, $_POST['title']);
 	   $questionText = mysqli_real_escape_string($db, $_POST['userQuestion']);
 
-	//do sql querie for question
+	//do sql query for question
   	if(count($errors) == 0){
 
   		$query = "INSERT INTO questions (title, questionText, asker) VALUES ('$title','$questionText','$user')"; //This is where the SQL querie will go (Insert statement) Table strucure: title, questionText, asker, views, voteCount, bestAnswer

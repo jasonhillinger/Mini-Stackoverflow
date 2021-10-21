@@ -1,5 +1,5 @@
 
-.idea/modules.xml
+.idea/
 *.iml
-.idea/vcs.xml
-.idea/php.xml
+.idea/*
+.idea

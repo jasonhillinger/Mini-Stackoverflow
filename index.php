@@ -52,7 +52,7 @@ include_once 'posts.php';
           background: #E8E8E8;
           padding: 5px 10px;
           height: 50%;
-          border-radius: 5px 5px 0px 0px;
+          border-radius: 0px 0px 0px 0px;
           border-bottom: 2px solid rgb(15, 184, 23);
           transition: all 0.5s;
           margin-top: 15px;
@@ -184,7 +184,7 @@ include_once 'posts.php';
 
         .col-sm-9 {
             height = 100px;
-            border: thick solid rgb(15, 184, 23);
+            <!--border: thick solid rgb(15, 184, 23);-->
         }
 
         footer {
@@ -279,12 +279,13 @@ include_once 'posts.php';
                 </div>
             </div>
             <div class="col-sm-9">
-                <div class="row">
+                <?php include 'fetchQA.php'; ?>
+               <!-- <div class="row">
                     <div class="col-sm-1">
                     </div>
                     <div class="col-sm-2">
                         <div class="well">
-                            <p><?php /*@//TODO: php code goes here (echo asker)*/ echo("John Smith")?></p>
+                            <p><?php /*@//TODO: php code goes here (echo asker)*/ //echo("John Smith")?></p>
                             <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
                         </div>
                     </div>
@@ -293,7 +294,8 @@ include_once 'posts.php';
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 id="left"> This is where question title will go</h4>
-                                    <p id="left">This is where question content will go</p>
+                                    <p id="left">This is where question content will go<br></p>
+                                    <p id="left"><?php //include 'fetchQA.php'; ?></p>
                                     <div class="voting">
                                         <button id="upvote">Upvote: 0</button>
                                         <script src="mybutton.js"></script>
@@ -323,7 +325,7 @@ include_once 'posts.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
