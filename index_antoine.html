@@ -1,3 +1,8 @@
+<?php
+include_once 'server.php';
+session_start(); //start a new session if not already started
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,59 +13,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
         }
         /* Style the header */
-        .container {
-	max-width: 640px;
-	margin: 30px auto;
-	background: #fff;
-	border-radius: 8px;
-	padding: 20px;
-}
-.comment {
-	display: block;
-	transition: all 1s;
-	border: block;
-}
-.commentClicked {
-	min-height: 0px;
-	border: 1px solid #eee;
-	border-radius: 5px;
-	padding: 5px 10px
-}
-.container textarea {
-	width: 100%;
-	border: none;
-	background: #E8E8E8;
-	padding: 5px 10px;
-	height: 50%;
-	border-radius: 5px 5px 0px 0px;
-	border-bottom: 2px solid rgb(15, 184, 23);
-	transition: all 0.5s;
-	margin-top: 15px;
-}
-button.primaryContained {
-	background:  rgb(15, 184, 23);
-	color: #fff;
-	padding: 10px 10px;
-	border: solid;
-	margin-top: 0px;
-	cursor: pointer;
-	text-transform: uppercase;
-	letter-spacing: 4px;
-	box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
-	transition: 1s all;
-	font-size: 10px;
-	border-radius: 5px;
-}
-button.primaryContained:hover {
-	background: #9f2efc;
-}
+
         .header img {
             width: 1000px;
             height: 200px;
@@ -75,7 +34,7 @@ button.primaryContained:hover {
             text-align: center;
         }
         /* Increase the font size of the h1 element */
-        
+
         .header h1 {
             position: relative;
             top: 18px;
@@ -84,13 +43,13 @@ button.primaryContained:hover {
             text-align: center;
         }
         /* Style the top navigation bar */
-        
+
         .navbar {
             overflow: hidden;
             background-color: rgb(15, 184, 23);
         }
         /* Style the navigation bar links */
-        
+
         .navbar a {
             float: left;
             display: block;
@@ -100,28 +59,28 @@ button.primaryContained:hover {
             text-decoration: none;
         }
         /* Right-aligned link */
-        
+
         .navbar a.right {
             float: right;
         }
         /* Change color on hover */
-        
+
         .navbar a:hover {
             background-color: #ddd;
             color: black;
         }
-        
+
         * {
             margin: 0;
             padding: auto;
             font-family: sans-serif;
             outline: none;
         }
-        
+
         body {
             background-color: black;
         }
-        
+
         .container {
             border: 3px solid #303030;
             padding: 20px;
@@ -130,7 +89,7 @@ button.primaryContained:hover {
             border-radius: 4px;
             position: relative;
         }
-        
+
         .voting {
             /*position: relative;
             border: 3px solid#303030;
@@ -141,12 +100,12 @@ button.primaryContained:hover {
             margin: 100px auto;
             text-align: center;
         }
-        
+
         .downvoting {
             margin: 100px auto;
             text-align: center;
         }
-        
+
         .button {
             /*color: aquamarine;
             background: none;
@@ -163,15 +122,15 @@ button.primaryContained:hover {
             border: 1px solid lightblue;
             color: lightblue;
         }
-        
+
         button :active {
             color: cadetblue;
         }
-        
+
         .col-sm-9 {
             border: thick solid rgb(15, 184, 23);
         }
-        
+
         footer {
             text-align: center;
             padding: 3px;
@@ -185,20 +144,28 @@ button.primaryContained:hover {
 
     <div class="header">
         <img src="tech2.jpg" alt="logo" class="src">
-        <h1>Welcome to Tech hub</h1>
+        <h1>Welcome to Tech hut</h1>
 
     </div>
 
     <div class="navbar">
-        <a href="#">Login</a>
-        <a href="#">Registration</a>
-        <a href="#">Index</a>
-        <a href="#" class="right">Link</a>
+        <a href="index.php">Home</a>
+        <?php
+    		if (isset($_SESSION["userID"])){
+    			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+    			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+    		}
+    		else{
+          echo("<a href=\"registration.php\">Register</a>");
+          echo("<a href=\"login.php\" class=\"right\">Login</a>");
+        }
+		    ?>
     </div>
     <div class="container">
         <h2> A fast and efficient website to ask your Tech questions </h2>
         <img src="" />
     </div>
+
     <div class="container text-center">
         <div class="row">
             <div class="col-sm-3 well">
@@ -218,39 +185,28 @@ button.primaryContained:hover {
                 </div>
 
             </div>
-            <div class="col-sm-7">
-
+            <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default text-left">
-                            <section id="app">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-6">
-                                      <div class="comment">
-					<div class="commentClicked">  
-					<p v-for="items in item" v-text="items"></p>
-				      </div>
-                                      </div><!--End Comment-->
-                                      </div><!--End col -->
-                                      </div><!-- End row -->
-                                  <div class="row">
-                                    <div class="col-6">
-			           
-                                  <textarea type="text" class="input" placeholder="Write a comment" v-model="newItem" @keyup.enter="addItem()"></textarea>
-                                      <button v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
-                                    </div><!-- End col -->
-                                  </div><!--End Row -->
-                                </div><!--End Container -->
-                              </section><!-- end App -->
-                           
-                              <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
-                              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-                              <script  src="comments.js"></script>
+                            <form id="form" action="#" method="post">
+                              <div class="panel-body">
+                                  <label>Write Your Question Below</label>
+                                  <br>
+                                  <input type="hidden" name="submitQuestion" value="1" />
+                                  <textarea id="title" name="title" rows=1 cols="30" required placeholder="Question Title"></textarea>
+
+                                  <textarea id="userquestion" name="userquestion" rows=4 cols="50" required placeholder="Describe your question here"></textarea>
+                              </div>
+                              <div class="modal-footer">
+                                <input type="submit" class="btndefault" />
+                              </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="col-sm-7">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="well">
@@ -265,37 +221,51 @@ button.primaryContained:hover {
                                 <button id="upvote">Upvote: 0</button>
                                 <script src="mybutton.js"></script>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <p>john smith</p>
-                            <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
-                        </div>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="well">
-                            <p>hello guys! can ii ask a question???</p>
-                            <div class="voting">
-                                <button id="upvote">Upvote: 0</button>
-                                <script src="mybutton.js"></script>
+                            <div class="panel-body">
+                              <label>Answer Question Below!</label>
+                              <textarea id="userquestion" name="userquestion" rows=4 cols="50" placeholder="Please respond to question here"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                              <input type="submit" class="btndefault" />
                             </div>
                         </div>
-
                     </div>
+
                 </div>
+                <div class= "primaryContained">
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="well">
+                              <p>john smith</p>
+                              <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
+                          </div>
+                      </div>
+                      <div class="col-sm-9 text-center">
+                          <div class="well">
+                              <p>hello guys! can ii ask a question???</p>
+                              <div class="voting">
+                                  <button id="upvote">Upvote: 0</button>
+                                  <script src="mybutton.js"></script>
+                              </div>
+                              <div class="panel-body">
+                                <label>Answer Question Below!</label>
+                                <textarea id="userquestion" name="userquestion" rows=4 cols="50" placeholder="Please respond to question here"></textarea>
+                              </div>
+                              <div class="modal-footer">
+                                <input type="submit" class="btndefault" />
+                              </div>
+                          </div>
 
-
+                      </div>
+                  </div>
+                </div>
             </div>
 
         </div>
     </div>
 
 
-    
+
 
     <footer class="footer">
         <h5></h5>
