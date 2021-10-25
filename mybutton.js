@@ -3,5 +3,6 @@ var button = document.getElementById("upvote"),
 button.onclick = function() {
     count += 1;
     button.innerHTML = "Upvote: " + count;
+    setTimeout(onclick, 10);
     
 };
