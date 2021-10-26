@@ -211,12 +211,6 @@ session_start(); //start a new session if not already started
         <img src="" />
     </div>
 	
-     <div class="popup" onclick="button">
-	    <span class="popuptext" id="myPopup"> Login / Register Options </span>
-	    <script src="mybutton.js"></script>
-     </div>
-
-	
     <div class="container text-center">
         <div class="row">
             <div class="col-sm-3 well">
