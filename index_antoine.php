@@ -266,6 +266,11 @@ session_start(); //start a new session if not already started
                                 <button id="upvote">Upvote: 0</button>
                                 <script src="mybutton.js"></script>
                             </div>
+				
+			    <div class="popup">
+	                        <span class="popuptext" button id="myPopup"> Login / Register Options </span>
+	                        <script src="mybutton.js"></script>
+                            </div>
                             <div class="panel-body">
                               <label>Answer Question Below!</label>
                               <textarea id="userquestion" name="userquestion" rows=4 cols="50" placeholder="Please respond to question here"></textarea>
