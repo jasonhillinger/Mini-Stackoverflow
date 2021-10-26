@@ -1,6 +1,7 @@
 var button = document.getElementById("upvote"),
+var popup = document.getElementById("myPopup"),
     count = 0;
-button.onclick = function() {
+popup.onclick = function() {
     count += 1;
     button.innerHTML = "Upvote: " + count;  
 };
