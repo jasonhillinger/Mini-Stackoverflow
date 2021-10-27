@@ -1,9 +1,9 @@
 var button = document.getElementById("upvote"),
-let loggedin = 0;
+var loggedin = false;
  
 count = 0;
 
-if (!loggedin)
+if (loggedin === false)
   {
 function myFunction() 
    {
