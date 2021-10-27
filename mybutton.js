@@ -3,7 +3,7 @@ var loggedin = false;
  
 count = 0;
 
-if (loggedin)
+//if (loggedin)
   {
 function myFunction() 
    {
@@ -12,7 +12,7 @@ function myFunction()
    }
   }
   
-  else
+  //else
   {
    
   button.onclick = function()
