@@ -10,7 +10,7 @@ function myFunction()
   }
 }
    
-else
+if (loggedin == true)
 {
 button.onclick = function() 
   {
