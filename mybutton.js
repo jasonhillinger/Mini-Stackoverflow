@@ -1,6 +1,6 @@
 //var button = document.getElementById("upvote"),
 
-function myFunction() {
+function myfFunction() {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
 }
