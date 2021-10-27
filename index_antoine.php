@@ -267,7 +267,7 @@ session_start(); //start a new session if not already started
                                 <script src="mybutton.js"></script>
                             </div>
 				
-			    <div class="popup">
+			    <div class="popup" onclick="myFunction()">
 	                        <span class="popuptext" button id="myPopup"> Login / Register Options </span>
 	                        <script src="mybutton.js"></script>
                             </div>
