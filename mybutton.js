@@ -1,5 +1,5 @@
 var loggedin = false;
-count = 0;
+//count = 0;
 
 if (loggedin == false)
 {
