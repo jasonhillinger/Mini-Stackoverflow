@@ -1,13 +1,21 @@
-//var button = document.getElementById("upvote"),
-
-//var logged = new 
+var button = document.getElementById("upvote"),
+var logged = new Boolean(false),
+ 
+count = 0;
 function myFunction() {
-  //if ()
+  if (logged)
+  {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
-}
-    count = 0;
-//button.onclick = function() {
-  //  count += 1;
-    //button.innerHTML = "Upvote: " + count;  
-//};
+  }
+  
+  else
+  {
+  button.onclick = function() {
+  count += 1;
+  button.innerHTML = "Upvote: " + count; 
+  }
+  }
+};
+   
+
