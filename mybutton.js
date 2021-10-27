@@ -19,5 +19,6 @@ button.onclick = function()
   button.innerHTML = "Upvote: " + count;  
   }
 }
+/*
    
 
