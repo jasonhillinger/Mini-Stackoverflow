@@ -1,6 +1,6 @@
 var loggedin = false;
 
-if (loggedin == false)
+if (loggedin)
 {
 function myFunction() 
   {
