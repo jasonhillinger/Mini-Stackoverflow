@@ -1,4 +1,4 @@
-var loggedin = true;
+var loggedin = false;
 //count = 0;
 
 if (loggedin == false)
@@ -10,7 +10,7 @@ function myFunction()
   }
 }
    
-if (loggedin == true)
+/*if (loggedin == true)
 {
 button.onclick = function() 
   {
