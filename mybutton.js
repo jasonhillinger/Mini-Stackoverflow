@@ -1,9 +1,12 @@
 var loggedin = false;
 
-function myFunction() 
+if (loggedin == false)
 {
+function myFunction() 
+  {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
+  }
 }
    
 
