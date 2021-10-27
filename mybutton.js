@@ -3,7 +3,7 @@ var logged = new Boolean(false),
  
 count = 0;
 function myFunction() {
-  if (logged)
+  if (!logged)
   {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
