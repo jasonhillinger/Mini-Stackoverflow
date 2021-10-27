@@ -192,8 +192,8 @@ session_start(); //start a new session if not already started
 }
 .popup .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 10px;
+  right: 20px;
   transition: all 200ms;
   font-size: 30px;
   font-weight: bold;
@@ -293,16 +293,18 @@ session_start(); //start a new session if not already started
 
                                 <div id="button" class="overlay">
 	                          <div class="popup">
-		                    <h2>Looks like you are not logged in!</h2>
+		                    <h3>Looks like you are not logged in!</h3>
 		                      <a class="close" href="#">&times;</a>
 		                    <div class="content">
 			            Please identify yourself before voting.
-			           <?php
+			            <div class ="identify">
+			            <?php
 
-                                   echo(<a href=\"registration.php\">Register</a>);
-                                   echo(<a href=\"login.php\" class=\"right\">Login</a>);
+                                   echo("<a href=\"registration.php\">Register</a>");
+                                   echo("<a href=\"login.php\" class=\"right\">Login</a>");
 
                                    ?>
+			             </div>
 		                    </div>
                                  </div>
                                </div>
