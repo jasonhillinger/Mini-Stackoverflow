@@ -1,7 +1,6 @@
-
-   
-//if (loggedin == true)
-//{
+  function myFunction() {
+  var popup = document.getElementById("box");
+  popup.classList.toggle("show");
 //button.onclick = function() 
   //{
   //var button = document.getElementById("upvote"),
