@@ -1,3 +1,4 @@
+var loggedin = false;
 
 function myFunction() 
 {
