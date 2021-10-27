@@ -1,4 +1,5 @@
 var loggedin = false;
+count = 0;
 
 if (loggedin == false)
 {
@@ -9,12 +10,14 @@ function myFunction()
   }
 }
    
-
-  count = 0;
-//button.onclick = function() {
-  //var button = document.getElementById("upvote"),
-  //count += 1;
-  //button.innerHTML = "Upvote: " + count;  
-//};
+else
+{
+button.onclick = function() 
+  {
+  var button = document.getElementById("upvote"),
+  count += 1;
+  button.innerHTML = "Upvote: " + count;  
+  }
+}
    
 
