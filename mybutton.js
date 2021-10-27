@@ -1,4 +1,4 @@
-var loggedin = false;
+var loggedin = true;
 //count = 0;
 
 if (loggedin == false)
