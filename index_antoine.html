@@ -147,8 +147,17 @@ session_start(); //start a new session if not already started
         -ms-user-select: none;
         user-select: none;
 }
-
-/* The actual popup */
+	    
+.popup {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    background-color: rgba(22,22,22,0.5); /* complimenting your modal colors */
+}
+	   
 .popup .popuptext {
   visibility: hidden;
   width: 160px;
@@ -164,22 +173,11 @@ session_start(); //start a new session if not already started
   margin-left: -80px;
 }
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class - hide and show the popup */
 .popup .show {
-  visibility: visible;
-	    }
+    position: relative;
+    margin: 0 auto;
+    top: 25%;
+}
 	    
 	    
     </style>
