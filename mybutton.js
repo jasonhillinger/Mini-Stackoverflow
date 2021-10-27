@@ -1,9 +1,9 @@
 var button = document.getElementById("upvote"),
-var logged = new Boolean(false),
+let loggedin = 0;
  
 count = 0;
 function myFunction() {
-  if (!logged)
+  if (loggedin = 0)
   {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
