@@ -3,7 +3,7 @@ let loggedin = 0;
  
 count = 0;
 
-if (loggedin = 0)
+if (!loggedin)
   {
 function myFunction() 
    {
