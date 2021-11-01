@@ -134,7 +134,11 @@ include_once 'posts.php';
         body {
             background-color: black;
         }
-
+		
+		a {
+			padding-left: 5px;
+		}
+		
         .container {
             border: 3px solid #303030;
             padding: 20px;
@@ -145,21 +149,89 @@ include_once 'posts.php';
 			background: rgb(255,255,255);
         }
 
-        .voting {
-            /*position: relative;
-            border: 3px solid#303030;
-            border-radius: 4px;
-            padding: 5px;
-            display: flex;
-            justify-content: center;*/
-            margin: 15px auto;
-            text-align: center;
-        }
+        @import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
+		
+		.roundrect .up {
+		  border-radius: 2rem 2rem 0 0;
+		}
+		.roundrect .down {
+		  border-radius: 0 0 2rem 2rem;
+		}
+		.roundrect .count {
+		  border-radius: 0.5rem 0.5rem;
+		}
 
-        .downvoting {
-            margin: 5px auto;
-            text-align: center;
-        }
+		.vote {
+		  display: flex;
+		  flex-direction: column;
+		  font-family: "Noto Sans";
+		  position: relative;
+		  width: 100px;
+		  height: 100px;
+		  margin: 10px;
+		}
+
+		.increment {
+		  flex: 1 0 0;
+		  text-align: center;
+		  opacity: 0.5;
+		  transition: 0.3s;
+		  cursor: pointer;
+		}
+		.increment.up {
+		  background: #4BC35F;
+		  height: 50%;
+		  margin-bottom: 0.25rem;
+		}
+		.increment.down {
+		  background: #C15044;
+		  height: 50%;
+		}
+		.increment:hover {
+		  opacity: 1;
+		}
+
+		.count {
+		  position: absolute;
+		  top: 0;
+		  border-radius: 0.1rem;
+		  margin: 2.5rem;
+		  background: #F6F3E4;
+		  width: 5rem;
+		  font-size: 2.5rem;
+		  font-weight: bold;
+		  line-height: 5rem;
+		  text-align: center;
+		  box-shadow: 0 0 0 0.5rem #F6F3E4;
+		  pointer-events: none;
+		}
+		.count.upvoted {
+		  color: #4BC35F;
+		}
+		.count.downvoted {
+		  color: #C15044;
+		}
+
+		.bump {
+		  -webkit-animation: bump 200ms;
+				  animation: bump 200ms;
+		}
+
+		@-webkit-keyframes bump {
+		  30% {
+			transform: scale(1.2);
+		  }
+		}
+
+		@keyframes bump {
+		  30% {
+			transform: scale(1.2);
+		  }
+		}
+		* {
+		  box-sizing: border-box;
+		}
+
 
         .button {
             /*color: aquamarine;
@@ -225,10 +297,6 @@ include_once 'posts.php';
         <img src="" />
     </div>
 
-    <!--<div class="voting">
-        <button id="upvote">Upvote: 0</button>
-        <script src="mybutton.js"></script>
-    </div>-->
     <div class="container text-center">
         <div class="row">
             <div class="col-sm-12">
@@ -296,10 +364,36 @@ include_once 'posts.php';
                                     <h4 id="left"> This is where question title will go</h4>
                                     <p id="left">This is where question content will go<br></p>
                                     <p id="left"><?php //include 'fetchQA.php'; ?></p>
-                                    <div class="voting">
-                                        <button id="upvote">Upvote: 0</button>
-                                        <script src="mybutton.js"></script>
-                                    </div>
+									<div class="vote roundrect">
+									  <div class="increment up"></div>
+									  <div class="increment down"></div>
+									  
+									  <div class="count">0</div>
+									</div>
+									<script type="text/javascript">
+									  $(function(){
+										  $(".increment").click(function(){
+											var count = parseInt($("~ .count", this).text());
+											
+											if($(this).hasClass("up")) {
+											  var count = count + 1;
+											  
+											   $("~ .count", this).text(count);
+											} 
+											
+											else {
+											  var count = count - 1;
+											   $("~ .count", this).text(count);     
+											}
+											
+											$(this).parent().addClass("bump");
+											
+											setTimeout(function(){
+											  $(this).parent().removeClass("bump");    
+											}, 400);
+										  });
+										});
+								  </script>
                                 </div>
                                 <div class = "panel-body">
                                     <p id="left">This is where answer 1 content will go</p>
