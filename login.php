@@ -41,19 +41,134 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){ //this condition means the following p
 <html lang="en">
 <head>
 <style>
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 45%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
+  body{
+		background-color: black;
+
+	}
+	.container{
+		border: 3px solid #303030;
+        padding: 20px;
+        width: 350 px;
+        text-align: center;
+        border-radius: 4px;
+        position: relative;
+		background: rgb(255,255,255);
+
+	}
+
+ 
+	.header img {
+		width: 1000px;
+        height: 200px;
+        background: no-repeat;
+        background-size: cover;
+        border: 6px solid #333;
+        margin: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        color: #ddd;
+        text-align: center;
+           
+    }
+   
+        /* Style the top navigation bar */
+
+    .navbar {
+        overflow: hidden;
+        background-color: rgb(15, 184, 23);
+    }
+        /* Style the navigation bar links */
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+        /* Right-aligned link */
+
+    .navbar a.right {
+        float: right;
+    }
+        /* Change color on hover */
+
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+	div {
+		margin-bottom: 10px;
+	}
+
+    label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+    }
+    
+		
+	input {
+		display: inline;
+        font-family: "Montserrat";
+        font-size: 1.05;
+        border: 2px solid green;
+        border-radius: 5px;
+        width: 15%;
+        height: 1.5em;
+    }
+		
+
+        
+
+	footer {
+		position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        background-color: rgb(15, 184, 23);
+        color: white;
+    }
+
+
 </style>
-  <title>Login Page</title>
+  
 </head>
+    </div>
+	 <div class="header">
+        <img src="tech2.jpg" alt="logo" class="src">
+ 
+
+    </div>
+
+
+ <div class="navbar">
+        <a href="index.php">Home</a>
+        <?php
+      		if (isset($_SESSION["userID"])){
+      			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+      			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+      		}
+      		else{
+            echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
+            echo("<a href=\"login.php\" class=\"right\">Login</a>");
+          }
+		    ?>
+    </div>
 
 <body>
+   <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default text-left">
+
   <form action="#" method="post">
     <div class="center">
       <h2>Login to Your Account!</h2>
@@ -80,7 +195,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){ //this condition means the following p
         }
         ?>
       </p>
+
+	
     </div>
+	<footer class="footer">
+        <h5></h5>
+    </footer>
+    <footer class="footer">
+        <p>Project by Team 01 for SOEN 341  <a>https://github.com/jasonhillinger/soen341project</a></p>
+    </footer>
   </form>
-  </body>
+  
+ </body>
 </html>
