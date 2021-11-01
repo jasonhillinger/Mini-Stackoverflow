@@ -168,6 +168,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){ //this condition means the following p
                     </div>
                     <div class="col-sm-6">
                         <div class="panel panel-default text-left">
+
   <form action="#" method="post">
     <div class="center">
       <h2>Login to Your Account!</h2>
@@ -194,6 +195,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){ //this condition means the following p
         }
         ?>
       </p>
+
 	
     </div>
 	<footer class="footer">
@@ -205,5 +207,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){ //this condition means the following p
   </form>
   
  </body>
-  
 </html>

@@ -185,4 +185,4 @@ function check(){ //checks if password and confirm password values match, if so 
     </footer>
 	</form>
 </html>
-
+ 

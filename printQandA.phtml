@@ -1,0 +1,72 @@
+<?php
+include_once 'server.php';
+$currentQ = $_SESSION["currentQuestion"];
+$row_answers=0;
+$numAnswersQuery = "SELECT * FROM answers where refQuestion = '$currentQ[questionID]'";
+$result_numAnswers = mysqli_query($db, $numAnswersQuery);
+$row_answers = mysqli_num_rows($result_numAnswers);
+
+$asker_query = "SELECT username FROM users where userID = '$currentQ[asker]'";
+$asker_result = mysqli_query($db, $asker_query);
+$askerName=mysqli_fetch_assoc($asker_result);
+
+?>
+
+<div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-2">
+        <div class="well">
+            <p><?php echo($askerName['username']); ?></p>
+            <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="well">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 id="left"> <?php echo($currentQ['title']); ?></h4>
+                    <p id="left"><?php echo($currentQ['questionText']); ?></p>
+                    <div class="voting">
+                        <button id="upvote">Upvote: 0</button>
+                        <script src="mybutton.js"></script>
+                    </div>
+                </div>
+                <?php
+                if($row_answers != 0) {
+                    // print answers
+                    echo("<div class = \"panel-body\">");
+                    //echo($row_answers);
+                    for($n = 0; $n < $row_answers; $n++){
+                        if ($n>0){
+                            echo("<div class=\"modal-footer\"></div>");
+                        }
+                        $answer_n_Query= "SELECT * FROM answers where refQuestion = '$currentQ[questionID]' ORDER BY answerID DESC LIMIT 1 OFFSET $n";
+                        $answerResult = mysqli_query($db, $answer_n_Query);
+
+                        $currentAnswer = mysqli_fetch_assoc($answerResult);
+                        mysqli_free_result($answerResult);
+                        $answerText = $currentAnswer['answerText'];
+                        echo("<p id=\"left\">". $answerText . "</p>");
+                    }
+                    echo("</div>");
+                    // close the result.
+                    mysqli_free_result($result_numAnswers);
+                }
+                ?>
+
+
+                </div>
+                <div class="panel-footer">
+                    <div class="form-floating">
+                        <form id="form" action="#" method="post">
+                            <input type="hidden" name="submitAnswer" value="1" />
+                            <input type="hidden" name="refQuestion" value="<?php echo($currentQ['questionID']); ?>" />
+                            <textarea class="form-control" id="userAnswer" name="userAnswer" rows=2 cols="50" required placeholder="Answer question here"></textarea>
+                            <input type="submit" class="btn btn-default" value="Submit Answer">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
