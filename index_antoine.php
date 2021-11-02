@@ -140,48 +140,58 @@ session_start(); //start a new session if not already started
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    
 
-        .popup {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-}
+        .box {
+	  width: 40%;
+	  margin: 0 auto;
+	  background: rgba(255,255,255,0.2);
+	  padding: 35px;
+	  border: 2px solid #fff;
+	  border-radius: 20px/50px;
+	  background-clip: padding-box;
+	  text-align: center;
+	}
+	.overlay {
+	  position: fixed;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  right: 0;
+	  background: rgba(0, 0, 0, 0.7);
+	  transition: opacity 500ms;
+	  visibility: hidden;
+	  opacity: 0;
+	}
 
-/* The actual popup */
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
-}
+	.overlay:target {
+	  visibility: visible;
+	  opacity: 1;
+	}
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
+	.popup {
+	  margin: 70px auto;
+	  padding: 20px;
+	  background: #fff;
+	  border-radius: 5px;
+	  width: 30%;
+	  position: relative;
+	  transition: all 5s ease-in-out;
+	}
 
-/* Toggle this class - hide and show the popup */
-.popup .show {
-  visibility: visible;
-}
+	.popup h2 {
+	  margin-top: 0;
+	  color: #333;
+	  font-family: Tahoma, Arial, sans-serif;
+	}
+	.popup .close {
+	  position: absolute;
+	  top: 10px;
+	  right: 20px;
+	  transition: all 200ms;
+	  font-size: 30px;
+	  font-weight: bold;
+	  text-decoration: none;
+	  color: #333;
+	}
     </style>
 </head>
 
