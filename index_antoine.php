@@ -276,7 +276,26 @@ session_start(); //start a new session if not already started
                                 <button id="upvote">Upvote: 0</button>
                                 <script src="mybutton.js"></script>
                             </div>
-				
+				<div class="box">
+	                        <a class="button" href="#popup1">upvote</a>
+                            </div>
+
+                                <div id="popup1" class="overlay">
+	                          <div class="popup">
+		                    <h3>Looks like you are not logged in!</h3>
+		                      <a class="close" href="#">&times;</a>
+		                    <div class="content">
+			            Please identify yourself before voting.
+			            <div class ="content2">
+			            <?php
+                                      echo("<a href=\"registration.php\">Register</a>");  
+			              echo("<a href=\"login.php\" class=\"right\">Login</a>");
+				      ?>    
+			            </div>
+			           </div>
+		                  </div>
+                                 </div>
+                                </div>
 			    <div class="popup" onclick="myFunction()"> click here
 	                        <span class="popuptext" id="myPopup"> Login / Register Options </span>
 	                        <script src="mybutton.js"></script>
