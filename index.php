@@ -134,11 +134,11 @@ include_once 'posts.php';
         body {
             background-color: black;
         }
-		
+
 		a {
 			padding-left: 5px;
 		}
-		
+
         .container {
             border: 3px solid #303030;
             padding: 20px;
@@ -150,7 +150,7 @@ include_once 'posts.php';
         }
 
         @import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
-		
+
 		.roundrect .up {
 		  border-radius: 2rem 2rem 0 0;
 		}
@@ -305,7 +305,7 @@ include_once 'posts.php';
                     </div>
                     <div class="col-sm-6">
                         <div class="panel panel-default text-left">
-                          <form id="form" action="#" method="post">
+                          <form id="form" method="post">
                             <div class="panel-body">
                                 <label>Have a Question?</label>
                                 <br>
@@ -323,7 +323,7 @@ include_once 'posts.php';
                     </div>
                     <?php
                     if (isset($_SESSION["userID"])){
-                        echo("            
+                        echo("
                     <div class=\"col-sm-3 well\">
                     <div class=\"well\">
                         <p><a href=\"#\">". $_SESSION["username"] ."</a></p>
@@ -336,7 +336,7 @@ include_once 'posts.php';
                             <span class=\"label label-primary\">IT questions</span>
                             <span class=\"label label-success\">HELP</span>
                             <span class=\"label label-info\">Q&A</span>
-    
+
                         </p>
                     </div>
                     </div>");
@@ -367,29 +367,29 @@ include_once 'posts.php';
 									<div class="vote roundrect">
 									  <div class="increment up"></div>
 									  <div class="increment down"></div>
-									  
+
 									  <div class="count">0</div>
 									</div>
 									<script type="text/javascript">
 									  $(function(){
 										  $(".increment").click(function(){
 											var count = parseInt($("~ .count", this).text());
-											
+
 											if($(this).hasClass("up")) {
 											  var count = count + 1;
-											  
+
 											   $("~ .count", this).text(count);
-											} 
-											
+											}
+
 											else {
 											  var count = count - 1;
-											   $("~ .count", this).text(count);     
+											   $("~ .count", this).text(count);
 											}
-											
+
 											$(this).parent().addClass("bump");
-											
+
 											setTimeout(function(){
-											  $(this).parent().removeClass("bump");    
+											  $(this).parent().removeClass("bump");
 											}, 400);
 										  });
 										});
@@ -424,8 +424,8 @@ include_once 'posts.php';
                 </div>
             </div>
         </div>
-
     </div>
+
     <footer class="footer">
         <h5></h5>
     </footer>

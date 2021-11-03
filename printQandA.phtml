@@ -67,7 +67,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         if ($n>0){
                             echo("<div class=\"modal-footer\"></div>");
                         }
-                        $answer_n_Query= "SELECT * FROM answers where refQuestion = '$currentQ[questionID]' ORDER BY answerID DESC LIMIT 1 OFFSET $n";
+                        $answer_n_Query= "SELECT * FROM answers where refQuestion = '$currentQ[questionID]' ORDER BY answerID ASC LIMIT 1 OFFSET $n";
                         $answerResult = mysqli_query($db, $answer_n_Query);
 
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
@@ -85,7 +85,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                 </div>
                 <div class="panel-footer">
                     <div class="form-floating">
-                        <form id="form" action="#" method="post">
+                        <form id="form" method="post">
                             <input type="hidden" name="submitAnswer" value="1" />
                             <input type="hidden" name="refQuestion" value="<?php echo($currentQ['questionID']); ?>" />
                             <textarea class="form-control" id="userAnswer" name="userAnswer" rows=2 cols="50" required placeholder="Answer question here"></textarea>
