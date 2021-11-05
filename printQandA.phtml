@@ -1,0 +1,120 @@
+<?php
+include_once 'server.php';
+$currentQ = $_SESSION["currentQuestion"];
+$row_answers=0;
+$numAnswersQuery = "SELECT * FROM answers where refQuestion = '$currentQ[questionID]'";
+$result_numAnswers = mysqli_query($db, $numAnswersQuery);
+$row_answers = mysqli_num_rows($result_numAnswers);
+
+$asker_query = "SELECT username FROM users where userID = '$currentQ[asker]'";
+$asker_result = mysqli_query($db, $asker_query);
+$askerName=mysqli_fetch_assoc($asker_result);
+
+?>
+
+<div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-2">
+        <div class="well">
+            <p><?php echo($askerName['username']); ?></p>
+            <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="well">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 id="left"> <?php echo($currentQ['title']); ?></h4>
+                    <p id="left"><?php echo($currentQ['questionText']); ?></p>
+					<div class="vote roundrect">
+					  <div class="increment up"></div>
+					  <div class="increment down"></div>
+					  
+					  <div class="count">0</div>
+					  <script type="text/javascript">
+						  $(function(){
+							  $(".increment").click(function(){
+							<?php
+							echo("<div class=\"box\">");
+	                        			echo("<div class=\"button\">");
+                           
+							echo("</div>");
+                               				echo("<div class=\"overlay\">");
+	                          			echo("<div class=\"popup\">");
+		                    			echo("<h3>Looks like you are not logged in!</h3>");
+		                      			echo("<a class=\"close\" href="#">&times;</a>");
+		                    			echo("<div class=\"content\">");
+			            			echo("Please identify yourself before voting.");
+			            			echo("<div class =\"content2\">");
+			            			
+                                     			echo("<a href=\"registration.php\">Register</a>");  
+			              			echo("<a href=\"login.php\" class=\"right\">Login</a>");
+				      			   
+			            			echo("</div>");
+			          			echo("</div>");
+		                  			echo("</div>");
+                                 			echo("</div>");
+                           				echo("</div>");
+							?>
+								//var count = parseInt($("~ .count", this).text());
+								
+								//if($(this).hasClass("up")) {
+								  //var count = count + 1;
+								  
+								   //$("~ .count", this).text(count);
+								//} 
+								
+								//else {
+								  //var count = count - 1;
+								  // $("~ .count", this).text(count);     
+								//}
+								
+								//$(this).parent().addClass("bump");
+								
+								//setTimeout(function(){
+								 // $(this).parent().removeClass("bump");    
+								}, 400);
+							  });
+							});
+					  </script>
+					</div>
+                </div>
+                <?php
+                if($row_answers != 0) {
+                    // print answers
+                    echo("<div class = \"panel-body\">");
+                    //echo($row_answers);
+                    for($n = 0; $n < $row_answers; $n++){
+                        if ($n>0){
+                            echo("<div class=\"modal-footer\"></div>");
+                        }
+                        $answer_n_Query= "SELECT * FROM answers where refQuestion = '$currentQ[questionID]' ORDER BY answerID ASC LIMIT 1 OFFSET $n";
+                        $answerResult = mysqli_query($db, $answer_n_Query);
+
+                        $currentAnswer = mysqli_fetch_assoc($answerResult);
+                        mysqli_free_result($answerResult);
+                        $answerText = $currentAnswer['answerText'];
+                        echo("<p id=\"left\">". $answerText . "</p>");
+                    }
+                    echo("</div>");
+                    // close the result.
+                    mysqli_free_result($result_numAnswers);
+                }
+                ?>
+
+
+                </div>
+                <div class="panel-footer">
+                    <div class="form-floating">
+                        <form id="form" method="post">
+                            <input type="hidden" name="submitAnswer" value="1" />
+                            <input type="hidden" name="refQuestion" value="<?php echo($currentQ['questionID']); ?>" />
+                            <textarea class="form-control" id="userAnswer" name="userAnswer" rows=2 cols="50" required placeholder="Answer question here"></textarea>
+                            <input type="submit" class="btn btn-default" value="Submit Answer">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
