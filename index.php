@@ -2,6 +2,7 @@
 include_once 'server.php';
 session_start(); //start a new session if not already started
 include_once 'posts.php';
+include_once 'upVote.php';
 ?>
 
 <!DOCTYPE html>
@@ -388,78 +389,6 @@ include_once 'posts.php';
             </div>
             <div class="col-sm-9">
                 <?php include 'fetchQA.php'; ?>
-               <!-- <div class="row">
-                    <div class="col-sm-1">
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="well">
-                            <p><?php /*@//TODO: php code goes here (echo asker)*/ //echo("John Smith")?></p>
-                            <img src="download.png" class="img-circle" height="55" width="55" alt="Avatar">
-                        </div>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="well">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 id="left"> This is where question title will go</h4>
-                                    <p id="left">This is where question content will go<br></p>
-                                    <p id="left"><?php //include 'fetchQA.php'; ?></p>
-									<div class="vote roundrect">
-									  <div class="increment up"></div>
-									  <div class="increment down"></div>
-
-									  <div class="count">0</div>
-									</div>
-									<script type="text/javascript">
-									  $(function(){
-										  $(".increment").click(function(){
-											var count = parseInt($("~ .count", this).text());
-
-											if($(this).hasClass("up")) {
-											  var count = count + 1;
-
-											   $("~ .count", this).text(count);
-											}
-
-											else {
-											  var count = count - 1;
-											   $("~ .count", this).text(count);
-											}
-
-											$(this).parent().addClass("bump");
-
-											setTimeout(function(){
-											  $(this).parent().removeClass("bump");
-											}, 400);
-										  });
-										});
-								  </script>
-                                </div>
-                                <div class = "panel-body">
-                                    <p id="left">This is where answer 1 content will go</p>
-                                    <div class="modal-footer">
-                                    </div>
-                                    <p id="left">This is where answer 2 content will go</p>
-                                    <div class="modal-footer">
-                                    </div>
-                                    <p id="left">This is where answer 3 content will go</p>
-                                    <div class="modal-footer">
-                                    </div>
-                                    <p id="left">This is where answer 4 content will go</p>
-                                </div>
-                                <div class="panel-footer">
-                                    <div class="form-floating">
-                                        <form id="form" action="#" method="post">
-                                            <input type="hidden" name="submitAnswer" value="1" />
-                                            <input type="hidden" name="refQuestion" value="<?php /*@//TODO: php code goes here (echo questionID)*/ echo(10)?>" />
-                                            <textarea class="form-control" id="userAnswer" name="userAnswer" rows=2 cols="50" required placeholder="Answer question here"></textarea>
-                                            <input type="submit" class="btn btn-default" value="Submit Answer">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
             </div>
