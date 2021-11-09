@@ -1,7 +1,7 @@
 <?php
  include_once 'server.php';
 $errors = array();
-
+if($_SERVER["REQUEST_METHOD"] == "POST"){ 
 //needs question ID, count
 $count = mysqli_real_escape_string($db, $_POST['count']);
 $questionID = mysqli_real_escape_string($db, $_SESSION['questionID']);
@@ -19,3 +19,4 @@ $questionID = mysqli_real_escape_string($db, $_SESSION['questionID']);
 //might need to use an incremental approach depending on JS implementation
 $query = "UPDATE questions SET voteCount = $count WHERE questionID = $questionID"; //This is where the SQL querie will go (Insert statement), to add the person if no errors
 mysqli_query($db,$query);
+}
