@@ -12,12 +12,45 @@ include_once 'posts.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        $(".increment").click(function(){
+        //let questionID = <?php #echo("\"" . $currentQ['questionID'] . "\"");?>;
+        let questionID = $("~ .count", this).attr("id");
+        let count = parseInt(document.getElementById(questionID).innerHTML);
+
+
+        if (($(this).hasClass("up"))) {
+          count ++;
+           //$("~ .count", this).text(count);
+          document.getElementById(questionID).innerHTML=count.toString();
+        }
+
+        else if (($(this).hasClass("down"))){
+          count--;
+           //$("~ .count", this).text(count);
+           document.getElementById(questionID).innerHTML=count.toString();
+        }
+
+        $(this).parent().addClass("bump");
+
+        setTimeout(function(){
+          $(this).parent().removeClass("bump");
+        }, 400);
+        });
+      });
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
         }
+
+        /* Green theme color in hex: #0fb817 */
+
         /* Style the header */
         .container {
           max-width: 1000px;
@@ -161,15 +194,17 @@ include_once 'posts.php';
 		  border-radius: 0.5rem 0.5rem;
 		}
 
-		.vote {
-		  display: flex;
-		  flex-direction: column;
-		  font-family: "Noto Sans";
-		  position: relative;
-		  width: 100px;
-		  height: 100px;
-		  margin: 10px;
-		}
+
+    .vote {
+      display: flex;
+      flex-direction: column;
+      font-family: "Noto Sans";
+      position: relative;
+      width: 3rem;
+      height: 3rem;
+      margin: 0.5rem;
+    }
+
 
 		.increment {
 		  flex: 1 0 0;
@@ -179,7 +214,9 @@ include_once 'posts.php';
 		  cursor: pointer;
 		}
 		.increment.up {
-		  background: #4BC35F;
+
+		  background: #0fb817;
+
 		  height: 50%;
 		  margin-bottom: 0.25rem;
 		}
@@ -191,22 +228,24 @@ include_once 'posts.php';
 		  opacity: 1;
 		}
 
-		.count {
-		  position: absolute;
-		  top: 0;
-		  border-radius: 0.1rem;
-		  margin: 2.5rem;
-		  background: #F6F3E4;
-		  width: 5rem;
-		  font-size: 2.5rem;
-		  font-weight: bold;
-		  line-height: 5rem;
-		  text-align: center;
-		  box-shadow: 0 0 0 0.5rem #F6F3E4;
-		  pointer-events: none;
-		}
+
+    .count {
+      position: absolute;
+      top: 5;
+      border-radius: 0.05rem;
+      margin: 0.75rem;
+      background: #F6F3E4;
+      width: 1.5rem;
+      font-size: 0.75rem;
+      font-weight: bold;
+      line-height: 1.5rem;
+      text-align: center;
+      box-shadow: 0 0 0 0.2rem #F6F3E4;
+      pointer-events: none;
+    }
 		.count.upvoted {
-		  color: #4BC35F;
+		  color: #08660c;
+
 		}
 		.count.downvoted {
 		  color: #C15044;
@@ -269,6 +308,7 @@ include_once 'posts.php';
             text-align: left;
         }
     </style>
+
 </head>
 
 <body>

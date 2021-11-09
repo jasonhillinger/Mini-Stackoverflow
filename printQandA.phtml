@@ -12,6 +12,9 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
 ?>
 
+
+
+
 <div class="row">
     <div class="col-sm-1">
     </div>
@@ -24,38 +27,19 @@ $askerName=mysqli_fetch_assoc($asker_result);
     <div class="col-sm-9">
         <div class="well">
             <div class="panel panel-default">
-                <div class="panel-heading">
+
+                <div class="panel-heading" data-questionID="<?php echo($currentQ['questionID']); ?>" >
+
                     <h4 id="left"> <?php echo($currentQ['title']); ?></h4>
                     <p id="left"><?php echo($currentQ['questionText']); ?></p>
 					<div class="vote roundrect">
 					  <div class="increment up"></div>
-					  <div class="increment down"></div>
-					  
-					  <div class="count">0</div>
-					  <script type="text/javascript">
-						  $(function(){
-							  $(".increment").click(function(){
-								var count = parseInt($("~ .count", this).text());
-								
-								if($(this).hasClass("up")) {
-								  var count = count + 1;
-								  
-								   $("~ .count", this).text(count);
-								} 
-								
-								else {
-								  var count = count - 1;
-								   $("~ .count", this).text(count);     
-								}
-								
-								$(this).parent().addClass("bump");
-								
-								setTimeout(function(){
-								  $(this).parent().removeClass("bump");    
-								}, 400);
-							  });
-							});
-					  </script>
+
+            <div class="increment down"></div>
+            <div class="count" id= "<?php echo($currentQ['questionID']);?>"> <?php echo($currentQ['voteCount']); ?> </div>
+
+
+
 					</div>
                 </div>
                 <?php
