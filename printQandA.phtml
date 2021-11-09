@@ -32,8 +32,10 @@ $askerName=mysqli_fetch_assoc($asker_result);
                     <p id="left"><?php echo($currentQ['questionText']); ?></p>
 					<div class="vote roundrect">
 					  <div class="increment up"></div>
+            <div class="increment down"></div>
             <div class="count" id= "<?php echo($currentQ['questionID']);?>"> <?php echo($currentQ['voteCount']); ?> </div>
-					  <div class="increment down"></div>
+
+
 
 					</div>
                 </div>

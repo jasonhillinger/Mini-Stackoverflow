@@ -26,7 +26,7 @@ include_once 'posts.php';
           document.getElementById(questionID).innerHTML=count.toString();
         }
 
-        else{
+        else if (($(this).hasClass("down"))){
           count--;
            //$("~ .count", this).text(count);
            document.getElementById(questionID).innerHTML=count.toString();
@@ -34,9 +34,9 @@ include_once 'posts.php';
 
         $(this).parent().addClass("bump");
 
-        // setTimeout(function(){
-        //   $(this).parent().removeClass("bump");
-        // }, 400);
+        setTimeout(function(){
+          $(this).parent().removeClass("bump");
+        }, 400);
         });
       });
     </script>
@@ -190,16 +190,15 @@ include_once 'posts.php';
 		  border-radius: 0.5rem 0.5rem;
 		}
 
-		.vote {
-		  display: flex;
-		  flex-direction: column;
-		  font-family: "Noto Sans";
-		  position: relative;
-		  width: 25px;
-		  height: 30px;
-		  margin: 0px;
-      padding: 5px 0 0 0;
-		}
+    .vote {
+      display: flex;
+      flex-direction: column;
+      font-family: "Noto Sans";
+      position: relative;
+      width: 3rem;
+      height: 3rem;
+      margin: 0.5rem;
+    }
 
 		.increment {
 		  flex: 1 0 0;
@@ -216,26 +215,25 @@ include_once 'posts.php';
 		.increment.down {
 		  background: #C15044;
 		  height: 50%;
-      top: 5px;
 		}
 		.increment:hover {
 		  opacity: 1;
 		}
 
-		.count {
-		  position: relative;
-		  top: 0px;
-		  border-radius: 0.1rem;
-		  margin: 0rem;
-		  background: #F6F3E4;
-		  width: 25px;
-		  font-size: 0.8rem;
-		  font-weight: bold;
-		  line-height: 0.7rem;
-		  text-align: center;
-		  box-shadow: 0 0 0 0rem #F6F3E4;
-		  pointer-events: none;
-		}
+    .count {
+      position: absolute;
+      top: 5;
+      border-radius: 0.05rem;
+      margin: 0.75rem;
+      background: #F6F3E4;
+      width: 1.5rem;
+      font-size: 0.75rem;
+      font-weight: bold;
+      line-height: 1.5rem;
+      text-align: center;
+      box-shadow: 0 0 0 0.2rem #F6F3E4;
+      pointer-events: none;
+    }
 		.count.upvoted {
 		  color: #08660c;
 		}
