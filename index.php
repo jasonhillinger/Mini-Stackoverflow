@@ -5,14 +5,20 @@ include_once 'posts.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myModule">
 <head>
     <title>Tech Hut</title>
-    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" name="viewport" content="width-device=width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+    <script src="angular.js"></script>
+    <script src="script.js"></script>
+    
+    
+</head>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -269,10 +275,7 @@ include_once 'posts.php';
             text-align: left;
         }
     </style>
-</head>
-
-<body>
-
+   
     <div class="header">
         <img src="tech2.jpg" alt="logo" class="src">
         <h1><b>Welcome to Tech hut</b></h1>
@@ -296,8 +299,10 @@ include_once 'posts.php';
         <h2><b> A fast and efficient website to ask your Tech questions </b></h2>
         <img src="" />
     </div>
-
+    <div class="col-md-2"></div>
+    
     <div class="container text-center">
+    
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
@@ -316,6 +321,8 @@ include_once 'posts.php';
                             <div class="modal-footer">
                               <input type="submit" class="btn btn-default" value="Submit Question">
                             </div>
+                            
+                            
                           </form>
                         </div>
                     </div>
@@ -432,6 +439,35 @@ include_once 'posts.php';
     <footer class="footer">
         <p>Project by Team 01 for SOEN 341  <a>https://github.com/jasonhillinger/soen341project</a></p>
     </footer>
+    <!--<body ng-controller="myController">
+
+<div class="col-md-2"></div>
+<div class="col-md-6 well">
+
+
+    <table class="table table-bordered">
+        <thead class="alert-info">
+            <tr>
+                <th>Action</th>
+                <th>Vote Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="member in members">
+
+                <td><button class="btn btn-primary btn-sm" ng-click="incrementUp(member)"><span class="glyphicon glyphicon-arrow-up"></span> Upvote</button> | <button class="btn btn-danger btn-sm" ng-click="incrementDown(member)"><span class="glyphicon glyphicon-arrow-down"></span> Downvote</button></td>
+                <td>{{member.Votes}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="angular.js"></script>
+    <script src="script.js"></script>
 </body>
+--->
+
+
+
+
 
 </html>

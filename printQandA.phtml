@@ -28,34 +28,29 @@ $askerName=mysqli_fetch_assoc($asker_result);
                     <h4 id="left"> <?php echo($currentQ['title']); ?></h4>
                     <p id="left"><?php echo($currentQ['questionText']); ?></p>
 					<div class="vote roundrect">
-					  <div class="increment up"></div>
-					  <div class="increment down"></div>
-					  
-					  <div class="count">0</div>
-					  <script type="text/javascript">
-						  $(function(){
-							  $(".increment").click(function(){
-								var count = parseInt($("~ .count", this).text());
-								
-								if($(this).hasClass("up")) {
-								  var count = count + 1;
-								  
-								   $("~ .count", this).text(count);
-								} 
-								
-								else {
-								  var count = count - 1;
-								   $("~ .count", this).text(count);     
-								}
-								
-								$(this).parent().addClass("bump");
-								
-								setTimeout(function(){
-								  $(this).parent().removeClass("bump");    
-								}, 400);
-							  });
-							});
-					  </script>
+                    <body ng-controller="myController">
+
+<div class="col-md-2"></div>
+<div class="col-md-6 well">
+
+
+    <table class="table table-bordered">
+        <thead class="alert-info">
+            <tr>
+                <th>Action</th>
+                <th>Vote Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="member in members">
+
+                <td><button class="btn btn-primary btn-sm" ng-click="incrementUp(member)"><span class="glyphicon glyphicon-arrow-up"></span> Upvote</button> | <button class="btn btn-danger btn-sm" ng-click="incrementDown(member)"><span class="glyphicon glyphicon-arrow-down"></span> Downvote</button></td>
+                <td>{{member.Votes}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
 					</div>
                 </div>
                 <?php
@@ -96,3 +91,4 @@ $askerName=mysqli_fetch_assoc($asker_result);
             </div>
         </div>
     </div>
+    
