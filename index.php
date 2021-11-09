@@ -12,6 +12,7 @@ include_once 'posts.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
       $(function(){
         $(".increment").click(function(){
@@ -40,13 +41,16 @@ include_once 'posts.php';
         });
       });
     </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
         }
+
         /* Green theme color in hex: #0fb817 */
+
         /* Style the header */
         .container {
           max-width: 1000px;
@@ -190,6 +194,7 @@ include_once 'posts.php';
 		  border-radius: 0.5rem 0.5rem;
 		}
 
+
     .vote {
       display: flex;
       flex-direction: column;
@@ -200,6 +205,7 @@ include_once 'posts.php';
       margin: 0.5rem;
     }
 
+
 		.increment {
 		  flex: 1 0 0;
 		  text-align: center;
@@ -208,7 +214,9 @@ include_once 'posts.php';
 		  cursor: pointer;
 		}
 		.increment.up {
+
 		  background: #0fb817;
+
 		  height: 50%;
 		  margin-bottom: 0.25rem;
 		}
@@ -219,6 +227,7 @@ include_once 'posts.php';
 		.increment:hover {
 		  opacity: 1;
 		}
+
 
     .count {
       position: absolute;
@@ -236,6 +245,7 @@ include_once 'posts.php';
     }
 		.count.upvoted {
 		  color: #08660c;
+
 		}
 		.count.downvoted {
 		  color: #C15044;
@@ -298,7 +308,6 @@ include_once 'posts.php';
             text-align: left;
         }
     </style>
-
 
 </head>
 

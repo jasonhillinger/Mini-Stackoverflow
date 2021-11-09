@@ -27,11 +27,14 @@ $askerName=mysqli_fetch_assoc($asker_result);
     <div class="col-sm-9">
         <div class="well">
             <div class="panel panel-default">
+
                 <div class="panel-heading" data-questionID="<?php echo($currentQ['questionID']); ?>" >
+
                     <h4 id="left"> <?php echo($currentQ['title']); ?></h4>
                     <p id="left"><?php echo($currentQ['questionText']); ?></p>
 					<div class="vote roundrect">
 					  <div class="increment up"></div>
+
             <div class="increment down"></div>
             <div class="count" id= "<?php echo($currentQ['questionID']);?>"> <?php echo($currentQ['voteCount']); ?> </div>
 
