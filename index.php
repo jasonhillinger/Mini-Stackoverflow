@@ -2,7 +2,6 @@
 include_once 'server.php';
 session_start(); //start a new session if not already started
 include_once 'posts.php';
-include_once 'upVote.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,38 +14,62 @@ include_once 'upVote.php';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-      $(function(){
-        $(".increment").click(function(){
-        //let questionID = <?php #echo("\"" . $currentQ['questionID'] . "\"");?>;
-        let questionID = $("~ .count", this).attr("id");
-        let count = parseInt(document.getElementById(questionID).innerHTML);
+          $(function(){
+            $(".increment").click(function(){
 
+            let questionID = $("~ .count", this).attr("id");
+            let count = parseInt(document.getElementById(questionID).innerHTML);
+            let vote = "";
 
-        if (($(this).hasClass("up"))) {
-          count ++;
-           //$("~ .count", this).text(count);
-          document.getElementById(questionID).innerHTML=count.toString();
-        }
+            $.ajax({ //check if user is signed in
+                type: "POST",
+                data: "user",
+                url: "signedIn.php",
+                async: false,
+                success: function (msg) {
+                  if(msg.status=="notSignedIn"){
+                    alert("You must be signed in to vote");
+                  }
+                  else if (msg.status=="signedIn"){
+                    signedIn = true;
+                    //alert("You are signed in");
+                  }
+                }
+            });
 
-        else if (($(this).hasClass("down"))){
-          count--;
-           //$("~ .count", this).text(count);
-           document.getElementById(questionID).innerHTML=count.toString();
-        }
+            if (!signedIn){
+              return false;
+            }
 
-        $(this).parent().addClass("bump");
+            if (($(this).hasClass("up"))) {
+              count ++;
+              document.getElementById(questionID).innerHTML=count.toString();
+              vote="up";
+            }
 
-        setTimeout(function(){
-          $(this).parent().removeClass("bump");
-        }, 400);
-        });
-      });
-    </script>
+            else if (($(this).hasClass("down"))){
+               count--;
+               document.getElementById(questionID).innerHTML=count.toString();
+               vote="down";
+            }
 
+            $.post({ //Send the current vote count and questionID to POST
+                type: "POST",
+                data: "questionID=" + questionID + "&vote=" + vote,
+                url: "upVote.php"
+            });
+
+            $(this).parent().addClass("bump");
+
+            setTimeout(function(){
+              $(this).parent().removeClass("bump");
+            }, 400);
+            });
+          });
+        </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="style.css" rel="stylesheet">
-
 </head>
 
 <body>
