@@ -15,11 +15,11 @@
     $currentUser = $_SESSION['userID'];
 
     if ($best === "best" && $currentUser == $OP){
-      $voteQuery = "UPDATE answers SET isBest = 1 WHERE answerID = $answerID";
+      $bestQuery = "UPDATE answers SET isBest = 1 WHERE answerID = $answerID";
     }
     elseif($best === "notbest" && $currentUser == $OP){
-        $voteQuery = "UPDATE answers SET isBest = 0 WHERE answerID = $answerID";
+        $bestQuery = "UPDATE answers SET isBest = 0 WHERE answerID = $answerID";
     }
-    mysqli_query($db,$voteQuery);
+    mysqli_query($db,$bestQuery);
   }
 
