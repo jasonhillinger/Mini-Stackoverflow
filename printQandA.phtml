@@ -80,7 +80,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         $UN = mysqli_fetch_assoc($userPoster);
 
                         
-
+                        echo("<p id=\"left\"> Username: ". $UN['username'] . "</p>");
                         $answerText = $currentAnswer['answerText'];
                         echo("<p id=\"left\">". $answerText . "</p>");
                     }
