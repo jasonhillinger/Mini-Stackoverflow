@@ -50,18 +50,16 @@ $askerName=mysqli_fetch_assoc($asker_result);
                     echo("<div class = \"panel-body\">");
                     //echo($row_answers);
                     for($n = 0; $n < $row_answers; $n++){
+                        echo '<div>';
                         if ($n>0){
-                            echo '<div>';
                             echo("<div class=\"modal-footer\"></div>");
                             echo '</div>';
-                        
                         }
                         //upvote and down vote for answer
-                        echo '<div>';
+                        
                         echo '<div class="vote roundrect">';
                         echo '<div class="increment up"></div>';
                         echo '<div class="increment down"></div>';
-                        echo '<div class="count" id= "<?php echo($row_answers[answerID]);?>"> <?php echo($row_answers[voteCount]); ?> </div>';
                         echo '</div>';
 
                         //Best answer goes here
