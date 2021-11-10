@@ -60,8 +60,12 @@ $askerName=mysqli_fetch_assoc($asker_result);
                             echo("<div class=\"modal-footer\"></div>");
                             echo '</div>';
                         }
-                        $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
-                        $userPoster = mysqli_query($db, $userNameQuery);
+                        $answer_n_Query= "SELECT * FROM answers where refQuestion = '$currentQ[questionID]' ORDER BY answerID ASC LIMIT 1 OFFSET $n";
+                        $answerResult = mysqli_query($db, $answer_n_Query);
+                        $currentAnswer = mysqli_fetch_assoc($answerResult);
+                        mysqli_free_result($answerResult);
+
+
                         //upvote and down vote for answer
                         echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
                         echo '<div class="vote roundrect">';
@@ -75,13 +79,11 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
                         //Best answer goes here
                         
-                        $answer_n_Query= "SELECT * FROM answers where refQuestion = '$currentQ[questionID]' ORDER BY answerID ASC LIMIT 1 OFFSET $n";
-                        $answerResult = mysqli_query($db, $answer_n_Query);
-                        $currentAnswer = mysqli_fetch_assoc($answerResult);
-                        mysqli_free_result($answerResult);
+                       
 
                         //getting user name of
-                        
+                        $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
+                        $userPoster = mysqli_query($db, $userNameQuery);
                         $UN = mysqli_fetch_assoc($userPoster);
 
                         
