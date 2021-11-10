@@ -16,22 +16,50 @@ include_once 'posts.php';
     <script type="text/javascript">
       $(function(){
         $(".increment").click(function(){
-        //let questionID = <?php #echo("\"" . $currentQ['questionID'] . "\"");?>;
+
         let questionID = $("~ .count", this).attr("id");
         let count = parseInt(document.getElementById(questionID).innerHTML);
+        let vote = "";
 
+        $.ajax({ //check if user is signed in
+            type: "POST",
+            data: "user",
+            url: "signedIn.php",
+            async: false,
+            success: function (msg) {
+              if(msg.status=="notSignedIn"){
+                alert("You must be signed in to vote");
+              }
+              else if (msg.status=="signedIn"){
+                signedIn = true;
+                //alert("You are signed in");
+              }
+            }
+        });
+
+        if (!signedIn){
+          return false;
+        }
 
         if (($(this).hasClass("up"))) {
           count ++;
-           //$("~ .count", this).text(count);
           document.getElementById(questionID).innerHTML=count.toString();
+          vote="up";
         }
 
         else if (($(this).hasClass("down"))){
-          count--;
-           //$("~ .count", this).text(count);
+           count--;
            document.getElementById(questionID).innerHTML=count.toString();
+           vote="down";
         }
+
+        $.post({ //Send the current vote count and questionID to POST
+            type: "POST",
+            data: "questionID=" + questionID + "&vote=" + vote,
+            url: "upVote.php"
+        });
+
+
 
         $(this).parent().addClass("bump");
 
