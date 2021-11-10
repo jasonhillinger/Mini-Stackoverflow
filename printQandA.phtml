@@ -4,6 +4,7 @@ $currentQ = $_SESSION["currentQuestion"];
 $row_answers=0;
 $numAnswersQuery = "SELECT * FROM answers where refQuestion = '$currentQ[questionID]'";
 $result_numAnswers = mysqli_query($db, $numAnswersQuery);
+$ans = mysqli_fetch_assoc($result_numAnswers);
 $row_answers = mysqli_num_rows($result_numAnswers);
 
 $asker_query = "SELECT username FROM users where userID = '$currentQ[asker]'";
@@ -43,6 +44,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
 					</div>
                 </div>
 				<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>
+
                 <?php
                 if($row_answers != 0) {
                     // print answers
@@ -57,6 +59,28 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
                         mysqli_free_result($answerResult);
+
+
+
+                        //upvote and down vote for answer
+                        echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
+                        echo '<div class="vote roundrect">';
+                        echo '<div class="increment up"></div>';
+                        echo '<div class="increment down"></div>';
+
+                        echo '</div>';
+
+                        //Best answer goes here
+                        echo '<div class="star"></div>';                     
+                       
+
+                        //getting user name of
+                        $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
+                        $userPoster = mysqli_query($db, $userNameQuery);
+                        $UN = mysqli_fetch_assoc($userPoster);
+
+                        
+
                         $answerText = $currentAnswer['answerText'];
                         echo("<p id=\"left\">". $answerText . "</p>");
                     }
