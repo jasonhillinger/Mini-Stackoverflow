@@ -4,6 +4,7 @@ $currentQ = $_SESSION["currentQuestion"];
 $row_answers=0;
 $numAnswersQuery = "SELECT * FROM answers where refQuestion = '$currentQ[questionID]'";
 $result_numAnswers = mysqli_query($db, $numAnswersQuery);
+$ans = mysqli_fetch_assoc($result_numAnswers);
 $row_answers = mysqli_num_rows($result_numAnswers);
 
 $numAnswersQuery = "SELECT * FROM answers where refQuestion = '$currentQ[questionID]'";
@@ -71,7 +72,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         echo '<div class="vote roundrect">';
                         echo '<div class="increment up"></div>';
                         echo '<div class="increment down"></div>';
-                      
+
                         echo '</div>';
 
                         //Best answer goes here
