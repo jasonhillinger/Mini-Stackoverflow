@@ -50,13 +50,21 @@ $askerName=mysqli_fetch_assoc($asker_result);
                     for($n = 0; $n < $row_answers; $n++){
                         if ($n>0){
                             echo("<div class=\"modal-footer\"></div>");
+                        
                         }
                         $answer_n_Query= "SELECT * FROM answers where refQuestion = '$currentQ[questionID]' ORDER BY answerID ASC LIMIT 1 OFFSET $n";
                         $answerResult = mysqli_query($db, $answer_n_Query);
-
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
                         mysqli_free_result($answerResult);
+
+                        //getting user name of
+                        $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
+                        $userPoster = mysqli_query($db, $userNameQuery);
+                        $UN = mysqli_fetch_assoc($userPoster);
+
+                        
                         $answerText = $currentAnswer['answerText'];
+                        echo("<p id=\"left\"> Username: ". $UN['username'] . "</p>");
                         echo("<p id=\"left\">". $answerText . "</p>");
                     }
                     echo("</div>");
@@ -64,6 +72,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                     mysqli_free_result($result_numAnswers);
                 }
                 ?>
+                
 
 
                 </div>
