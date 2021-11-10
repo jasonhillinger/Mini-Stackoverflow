@@ -1,21 +1,26 @@
 <?php
- include_once 'server.php';
-$errors = array();
+  include_once 'server.php';
+  session_start();
+  $errors = array();
+  //if($_SERVER["REQUEST_METHOD"] == "POST"){
+  //needs question ID, count
+  $vote = $_POST['vote'];
+  $questionID = $_POST['questionID'];
 
-//needs question ID, count
-$count = mysqli_real_escape_string($db, $_POST['count']);
-$questionID = mysqli_real_escape_string($db, $_POST['questionID']);
+  //might need error checking
 
-//might need error checking
+  // vote can be "up" or "down"
+  //updates the old voteCount stored in database with voteCount +/- 1 depending on vote
+  //user must be signed in to vote
+  if(isset($_SESSION['userID'])){
+    $userID = $_SESSION['userID'];
 
-// assuming count can be +1 or -1
-//updates the old voteCount with a +/- 1
-$query1 = "SELECT voteCount FROM questions WHERE questionID = $questionID";
-$currentVoteCount = mysqli_query($db,$query1);
-$count = $currentVoteCount + $count;
-//
-
-//updates the voteCount of the question being voted on to the count from JS
-//might need to use an incremental approach depending on JS implementation
-$query = "UPDATE questions SET voteCount = $count WHERE questionID = $questionID"; //This is where the SQL querie will go (Insert statement), to add the person if no errors
-mysqli_query($db,$query);
+    if ($vote === "up"){
+      $voteQuery = "UPDATE questions SET voteCount = (voteCount + 1) WHERE questionID = $questionID";
+    }
+    else{
+      $voteQuery = "UPDATE questions SET voteCount = (voteCount - 1) WHERE questionID = $questionID";
+    }
+    mysqli_query($db,$voteQuery);
+  }
+?>

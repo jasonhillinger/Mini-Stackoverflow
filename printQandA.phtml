@@ -4,6 +4,7 @@ $currentQ = $_SESSION["currentQuestion"];
 $row_answers=0;
 $numAnswersQuery = "SELECT * FROM answers where refQuestion = '$currentQ[questionID]'";
 $result_numAnswers = mysqli_query($db, $numAnswersQuery);
+$ans = mysqli_fetch_assoc($result_numAnswers);
 $row_answers = mysqli_num_rows($result_numAnswers);
 
 $asker_query = "SELECT username FROM users where userID = '$currentQ[asker]'";
@@ -11,6 +12,9 @@ $asker_result = mysqli_query($db, $asker_query);
 $askerName=mysqli_fetch_assoc($asker_result);
 
 ?>
+
+
+
 
 <div class="row">
     <div class="col-sm-1">
@@ -24,40 +28,23 @@ $askerName=mysqli_fetch_assoc($asker_result);
     <div class="col-sm-9">
         <div class="well">
             <div class="panel panel-default">
-                <div class="panel-heading">
+
+                <div class="panel-heading" data-questionID="<?php echo($currentQ['questionID']); ?>" >
+
                     <h4 id="left"> <?php echo($currentQ['title']); ?></h4>
                     <p id="left"><?php echo($currentQ['questionText']); ?></p>
 					<div class="vote roundrect">
 					  <div class="increment up"></div>
-					  <div class="increment down"></div>
-					  
-					  <div class="count">0</div>
-					  <script type="text/javascript">
-						  $(function(){
-							  $(".increment").click(function(){
-								var count = parseInt($("~ .count", this).text());
-								
-								if($(this).hasClass("up")) {
-								  var count = count + 1;
-								  
-								   $("~ .count", this).text(count);
-								} 
-								
-								else {
-								  var count = count - 1;
-								   $("~ .count", this).text(count);     
-								}
-								
-								$(this).parent().addClass("bump");
-								
-								setTimeout(function(){
-								  $(this).parent().removeClass("bump");    
-								}, 400);
-							  });
-							});
-					  </script>
+
+            <div class="increment down"></div>
+            <div class="count" id= "<?php echo($currentQ['questionID']);?>"> <?php echo($currentQ['voteCount']); ?> </div>
+
+
+
 					</div>
                 </div>
+				<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>
+
                 <?php
                 if($row_answers != 0) {
                     // print answers
@@ -72,6 +59,28 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
                         mysqli_free_result($answerResult);
+
+
+
+                        //upvote and down vote for answer
+                        echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
+                        echo '<div class="vote roundrect">';
+                        echo '<div class="increment up"></div>';
+                        echo '<div class="increment down"></div>';
+
+                        echo '</div>';
+
+                        //Best answer goes here
+                        echo '<div class="star"></div>';                     
+                       
+
+                        //getting user name of
+                        $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
+                        $userPoster = mysqli_query($db, $userNameQuery);
+                        $UN = mysqli_fetch_assoc($userPoster);
+
+                        
+
                         $answerText = $currentAnswer['answerText'];
                         echo("<p id=\"left\">". $answerText . "</p>");
                     }
