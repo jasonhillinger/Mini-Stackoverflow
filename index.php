@@ -67,7 +67,7 @@ include_once 'posts.php';
 
         let id = $("~ .count", this).attr("id");
         let item = "";
-        let questioniD ="";
+        let questionID ="";
         let answerID = "";
         if (id.slice(0,5) == "answer"){
             item = "answer";
