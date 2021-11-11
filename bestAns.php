@@ -23,4 +23,3 @@
     mysqli_query($db,$bestQuery);
   }
 }
-
