@@ -49,15 +49,12 @@ $askerName=mysqli_fetch_assoc($asker_result);
                     // print answers
                     echo("<div class = \"panel-body\">");
                     //echo($row_answers);
-                    echo ($_SESSION["userID"]. "<n>");
                     if (isset($_SESSION["userID"])){
                       if ($_SESSION["userID"]==$currentQ["asker"]){
                         $showStars=1;
-                        echo ("1");
                       }
                       else{
                         $showStars=0;
-                        echo ("0");
                       }
                     }
                     else{
@@ -84,8 +81,13 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
                         echo '</div>';
 
-                        //Best answer goes here
-                        if ($showStars){
+                        //Best answer button goes here
+                        $isBest = 0;
+                        if ($currentAnswer['isBest']){
+                          $isBest = 1;
+                          include 'star.phtml';
+                        }
+                        elseif ($showStars){
                           include 'star.phtml';
                         }
                         // $OP = $currentQ['asker'];

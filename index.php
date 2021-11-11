@@ -18,23 +18,45 @@ include_once 'posts.php';
 
       const onClick = (event) => {
         if (event.target.nodeName === 'path') {
-          let qID = event.target.id.slice(4);
-          console.log(qID);
-          let best=0;//if best is 0, user is unmarking as best, if best=1 user is marking as best
-          let change = 0;
-          if (document.getElementById(event.target.id).getAttribute("fill") == "gold"){
-            document.getElementById(event.target.id).setAttribute("fill", "grey");
-            best = 0;
+          let OP = 0;
+          let answerID = event.target.id.slice(4);
+          $.ajax({ //check if user is the original poster of the question
+              type: "POST",
+              data: "answerID=" + answerID,
+              url: "checkOP.php",
+              async: false,
+              success: function (msg) {
+                if(msg.status=="notOP"){
+                  alert("You must be the user who asked the question to choose the best answer");
+                }
+                else if (msg.status=="OP"){
+                  OP = true;
+                  //alert("You are the OP");
+                }
+              }
+          });
+          if(OP){//if user is the original poster of the question
+            console.log(answerID);
+            let best=0;//if best is 0, user is unmarking as best, if best=1 user is marking as best
+            if (document.getElementById(event.target.id).getAttribute("fill") == "gold"){
+              document.getElementById(event.target.id).setAttribute("fill", "grey");
+              best = 0;
+            }
+            else{
+              document.getElementById(event.target.id).setAttribute("fill", "gold");
+              best = 1;
+            }
+            $.post({ //Send the chosen best Answer answerID to POST to bestAns.php
+                type: "POST",
+                data: "answerID=" + answerID + "&best=" + best,
+                url: "bestAns.php",
+                async: false,
+                success: function (msg) {
+                  alert(msg.status);
+                }
+
+            });
           }
-          else{
-            document.getElementById(event.target.id).setAttribute("fill", "gold");
-            best = 1;
-          }
-          // $.post({ //Send the chosen best Answer answerID to POST to bestAns.php
-          //     type: "POST",
-          //     data: "questionID=" + qID + "&best=" + best,
-          //     url: "bestAns.php"
-          // });
         }
       }
       window.addEventListener('click', onClick);
