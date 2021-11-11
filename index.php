@@ -39,11 +39,9 @@ include_once 'posts.php';
             console.log(answerID);
             let best=0;//if best is 0, user is unmarking as best, if best=1 user is marking as best
             if (document.getElementById(event.target.id).getAttribute("fill") == "gold"){
-              document.getElementById(event.target.id).setAttribute("fill", "grey");
               best = 0;
             }
             else{
-              document.getElementById(event.target.id).setAttribute("fill", "gold");
               best = 1;
             }
             $.post({ //Send the chosen best Answer answerID to POST to bestAns.php
@@ -52,6 +50,12 @@ include_once 'posts.php';
                 url: "bestAns.php",
                 async: false,
                 success: function (msg) {
+                  if (msg.success=="true" && best==0){
+                    document.getElementById(event.target.id).setAttribute("fill", "grey");
+                  }
+                  else if (msg.success=="true"){
+                    document.getElementById(event.target.id).setAttribute("fill", "gold");
+                  }
                   alert(msg.status);
                 }
 
