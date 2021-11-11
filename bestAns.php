@@ -5,7 +5,10 @@
   $response = [];
 
   $best = $_POST['best'];
-  $answerID = $_POST['answerID'];
+
+  $questionID = $_POST['questionID'];
+  $OP = $_POST['userID'];
+
 
   //fetch questionID of reference question for the answer
   $fetchRefQuestionQuery = "SELECT answers.refQuestion FROM answers WHERE answers.answerID = $answerID;";

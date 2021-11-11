@@ -44,6 +44,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
 					</div>
                 </div>
 
+
                 <?php
                 if($row_answers != 0) {
                     // print answers
@@ -71,13 +72,31 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
                         mysqli_free_result($answerResult);
 
-                        //print_r($currentAnswer);
+
+                       // print_r($currentAnswer);
+                       $questionID = $currentQ['questionID'];
+                        $answerID = $currentAnswer['answerID'];
+                      $voter = $_SESSION['userID'];
+                        
+                        $voteQuery = "SELECT * FROM votes where voterID = $voter and questionID = $questionID and answerID = $answerID ";
+                        $answerResult2 = mysqli_query($db, $voteQuery);
+                        $votes = mysqli_fetch_assoc($answerResult2);
 
                         //upvote and down vote for answer
+                        $OP = $currentQ['asker'];
+                        
+                        $hasVoted = $votes['hasVoted'];
+                        $upvote1 = $votes['upVote'];
                         echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
                         echo '<div class="vote roundrect">';
-                        echo '<div class="increment up"></div>';
-                        echo '<div class="increment down"></div>';
+                        echo '<div class="increment up" name = "upvote"></div>';
+                        echo '<div class="increment down" name = "downvote"></div>';
+
+                       
+
+			echo '<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>';
+
+
 
                         echo '</div>';
 
@@ -90,20 +109,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         elseif ($showStars){
                           include 'star.phtml';
                         }
-                        // $OP = $currentQ['asker'];
-                        // $questionID = $currentQ['questionID'];
-                        // $answerID = $currentAnswer['answerID'];
-                        // if(isset($_POST['button1'])) {
-                        //     if(isset($_SESSION['userID'])){
-                        //         $currentUser = $_SESSION['userID'];
-                        //
-                        //         if ($currentUser == $OP){
-                        //           $bestQuery = "UPDATE answers SET isBest = 0 WHERE answerID = $answerID and refQuestion = $questionID";
-                        //           echo("Success");
-                        //         }
-                        //         mysqli_query($db,$bestQuery);
-                        //       }
-                        // }
+
 
                         //getting user name of
                         $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
@@ -111,9 +117,10 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         $UN = mysqli_fetch_assoc($userPoster);
 
 
-                        echo("<p id=\"left\"> Username: ". $UN['username'] . "</p>");
+                        
+                        echo("<p id=\"center\"> Username: ". $UN['username'] . "</p>");
                         $answerText = $currentAnswer['answerText'];
-                        echo("<p id=\"left\">". $answerText . "</p>");
+                        echo("<p id=\"center\">". $answerText . "</p>");
                     }
                     echo("</div>");
                     // close the result.
