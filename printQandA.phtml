@@ -41,14 +41,27 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
 
 
-	    </div>
-            </div>
-				
+					</div>
+                </div>
+
+
                 <?php
                 if($row_answers != 0) {
                     // print answers
                     echo("<div class = \"panel-body\">");
                     //echo($row_answers);
+                    if (isset($_SESSION["userID"])){
+                      if ($_SESSION["userID"]==$currentQ["asker"]){
+                        $showStars=1;
+                      }
+                      else{
+                        $showStars=0;
+                      }
+                    }
+                    else{
+                      $showStars=0;
+                    }
+
                     for($n = 0; $n < $row_answers; $n++){
                         if ($n>0){
                             echo("<div class=\"modal-footer\"></div>");
@@ -58,6 +71,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
                         mysqli_free_result($answerResult);
+
 
                        // print_r($currentAnswer);
                        $questionID = $currentQ['questionID'];
@@ -86,29 +100,22 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
                         echo '</div>';
 
-                        //Best answer goes here
-                        $OP = $currentQ['asker'];
-                        $questionID = $currentQ['questionID'];
-                        $answerID = $currentAnswer['answerID'];
-                        echo '<form method="post">
-                        <input type="submit" name="button1"
-                                value="Best Answer"/></form>';
-                        if(isset($_POST['button1'])) {
-                            if(isset($_SESSION['userID'])){
-                                $currentUser = $_SESSION['userID'];
-                            
-                                if ($currentUser == $OP){
-                                  $bestQuery = "UPDATE answers SET isBest = 1 WHERE answerID = $answerID and refQuestion = $questionID";
-                                  echo("Success");
-                                }
-                                mysqli_query($db,$bestQuery);
-                              }
+                        //Best answer button goes here
+                        $isBest = 0;
+                        if ($currentAnswer['isBest']){
+                          $isBest = 1;
+                          include 'star.phtml';
                         }
+                        elseif ($showStars){
+                          include 'star.phtml';
+                        }
+
 
                         //getting user name of
                         $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
                         $userPoster = mysqli_query($db, $userNameQuery);
                         $UN = mysqli_fetch_assoc($userPoster);
+
 
                         
                         echo("<p id=\"center\"> Username: ". $UN['username'] . "</p>");
