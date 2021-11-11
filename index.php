@@ -14,58 +14,107 @@ include_once 'posts.php';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-          $(function(){
-            $(".increment").click(function(){
 
-            let questionID = $("~ .count", this).attr("id");
-            let count = parseInt(document.getElementById(questionID).innerHTML);
-            let vote = "";
 
-            $.ajax({ //check if user is signed in
+      const onClick = (event) => {
+        if (event.target.nodeName === 'path') {
+          let OP = 0;
+          let answerID = event.target.id.slice(4);
+          $.ajax({ //check if user is the original poster of the question
+              type: "POST",
+              data: "answerID=" + answerID,
+              url: "checkOP.php",
+              async: false,
+              success: function (msg) {
+                if(msg.status=="notOP"){
+                  alert("You must be the user who asked the question to choose the best answer");
+                }
+                else if (msg.status=="OP"){
+                  OP = true;
+                  //alert("You are the OP");
+                }
+              }
+          });
+          if(OP){//if user is the original poster of the question
+            console.log(answerID);
+            let best=0;//if best is 0, user is unmarking as best, if best=1 user is marking as best
+            if (document.getElementById(event.target.id).getAttribute("fill") == "gold"){
+              document.getElementById(event.target.id).setAttribute("fill", "grey");
+              best = 0;
+            }
+            else{
+              document.getElementById(event.target.id).setAttribute("fill", "gold");
+              best = 1;
+            }
+            $.post({ //Send the chosen best Answer answerID to POST to bestAns.php
                 type: "POST",
-                data: "user",
-                url: "signedIn.php",
+                data: "answerID=" + answerID + "&best=" + best,
+                url: "bestAns.php",
                 async: false,
                 success: function (msg) {
-                  if(msg.status=="notSignedIn"){
-                    alert("You must be signed in to vote");
-                  }
-                  else if (msg.status=="signedIn"){
-                    signedIn = true;
-                    //alert("You are signed in");
-                  }
+                  alert(msg.status);
                 }
+
             });
+          }
+        }
+      }
+      window.addEventListener('click', onClick);
 
-            if (!signedIn){
-              return false;
+
+      $(function(){
+        $(".increment").click(function(){
+
+        let questionID = $("~ .count", this).attr("id");
+        let count = parseInt(document.getElementById(questionID).innerHTML);
+        let vote = "";
+
+        $.ajax({ //check if user is signed in
+            type: "POST",
+            data: "user",
+            url: "signedIn.php",
+            async: false,
+            success: function (msg) {
+              if(msg.status=="notSignedIn"){
+                alert("You must be signed in to vote");
+              }
+              else if (msg.status=="signedIn"){
+                signedIn = true;
+                //alert("You are signed in");
+              }
             }
+        });
 
-            if (($(this).hasClass("up"))) {
-              count ++;
-              document.getElementById(questionID).innerHTML=count.toString();
-              vote="up";
-            }
+        if (!signedIn){
+          alert("You must be signed in to vote");
+          return false;
+        }
 
-            else if (($(this).hasClass("down"))){
-               count--;
-               document.getElementById(questionID).innerHTML=count.toString();
-               vote="down";
-            }
+        if (($(this).hasClass("up"))) {
+          count ++;
+          document.getElementById(questionID).innerHTML=count.toString();
+          vote="up";
+        }
 
-            $.post({ //Send the current vote count and questionID to POST
-                type: "POST",
-                data: "questionID=" + questionID + "&vote=" + vote,
-                url: "upVote.php"
-            });
+        else if (($(this).hasClass("down"))){
+           count--;
+           document.getElementById(questionID).innerHTML=count.toString();
+           vote="down";
+        }
 
-            $(this).parent().addClass("bump");
+        $.post({ //Send the current vote count and questionID to POST
+            type: "POST",
+            data: "questionID=" + questionID + "&vote=" + vote,
+            url: "upVote.php"
+        });
 
-            setTimeout(function(){
-              $(this).parent().removeClass("bump");
-            }, 400);
-            });
-          });
+        $(this).parent().addClass("bump");
+
+        setTimeout(function(){
+          $(this).parent().removeClass("bump");
+        }, 400);
+        });
+      });
         </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

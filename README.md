@@ -27,3 +27,7 @@ The languages used in this project will be:
 - HTML   
 - Bootstrap  
 - JS  
+
+
+## Architecture
+![Architecture](Architecture.png)

@@ -43,13 +43,25 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
 					</div>
                 </div>
-				<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>
+
 
                 <?php
                 if($row_answers != 0) {
                     // print answers
                     echo("<div class = \"panel-body\">");
                     //echo($row_answers);
+                    if (isset($_SESSION["userID"])){
+                      if ($_SESSION["userID"]==$currentQ["asker"]){
+                        $showStars=1;
+                      }
+                      else{
+                        $showStars=0;
+                      }
+                    }
+                    else{
+                      $showStars=0;
+                    }
+
                     for($n = 0; $n < $row_answers; $n++){
                         if ($n>0){
                             echo("<div class=\"modal-footer\"></div>");
@@ -61,28 +73,54 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         mysqli_free_result($answerResult);
 
 
+                       // print_r($currentAnswer);
+                       $questionID = $currentQ['questionID'];
+                        $answerID = $currentAnswer['answerID'];
+                      $voter = $_SESSION['userID'];
+                        
+                        $voteQuery = "SELECT * FROM votes where voterID = $voter and questionID = $questionID and answerID = $answerID ";
+                        $answerResult2 = mysqli_query($db, $voteQuery);
+                        $votes = mysqli_fetch_assoc($answerResult2);
 
                         //upvote and down vote for answer
+                        $OP = $currentQ['asker'];
+                        
+                        $hasVoted = $votes['hasVoted'];
+                        $upvote1 = $votes['upVote'];
                         echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
                         echo '<div class="vote roundrect">';
-                        echo '<div class="increment up"></div>';
-                        echo '<div class="increment down"></div>';
+                        echo '<div class="increment up" name = "upvote"></div>';
+                        echo '<div class="increment down" name = "downvote"></div>';
+
+                       
+
+			echo '<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>';
+
+
 
                         echo '</div>';
 
-                        //Best answer goes here
-                        echo '<div class="star"></div>';                     
-                       
+                        //Best answer button goes here
+                        $isBest = 0;
+                        if ($currentAnswer['isBest']){
+                          $isBest = 1;
+                          include 'star.phtml';
+                        }
+                        elseif ($showStars){
+                          include 'star.phtml';
+                        }
+
 
                         //getting user name of
                         $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
                         $userPoster = mysqli_query($db, $userNameQuery);
                         $UN = mysqli_fetch_assoc($userPoster);
 
+
                         
-                        echo("<p id=\"left\"> Username: ". $UN['username'] . "</p>");
+                        echo("<p id=\"center\"> Username: ". $UN['username'] . "</p>");
                         $answerText = $currentAnswer['answerText'];
-                        echo("<p id=\"left\">". $answerText . "</p>");
+                        echo("<p id=\"center\">". $answerText . "</p>");
                     }
                     echo("</div>");
                     // close the result.
