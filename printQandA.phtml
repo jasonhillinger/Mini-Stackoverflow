@@ -60,20 +60,25 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         mysqli_free_result($answerResult);
 
                        // print_r($currentAnswer);
+                       $questionID = $currentQ['questionID'];
+                        $answerID = $currentAnswer['answerID'];
+                      $voter = $_SESSION['userID'];
+                        
+                        $voteQuery = "SELECT * FROM votes where voterID = $voter and questionID = $questionID and answerID = $answerID ";
+                        $answerResult2 = mysqli_query($db, $voteQuery);
+                        $votes = mysqli_fetch_assoc($answerResult2);
 
                         //upvote and down vote for answer
                         $OP = $currentQ['asker'];
-                        $questionID = $currentQ['questionID'];
-                        $answerID = $currentAnswer['answerID'];
+                        
+                        $hasVoted = $votes['hasVoted'];
+                        $upvote1 = $votes['upVote'];
                         echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
                         echo '<div class="vote roundrect">';
                         echo '<div class="increment up" name = "upvote"></div>';
-                        echo '<div class="increment down"></div>';
+                        echo '<div class="increment down" name = "downvote"></div>';
 
-                        if (isset($_POST['upvote'])){
-                            $bestQuery = "UPDATE answers SET voteCount = (voteCount+1) WHERE answerID = $answerID and refQuestion = $questionID";
-                            echo("Success");
-                          }
+                       
 
 			echo '<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>';
 
@@ -106,7 +111,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         $UN = mysqli_fetch_assoc($userPoster);
 
                         
-                        echo("<p id=\"left\"> Username: ". $UN['username'] . "</p>");
+                        echo("<p id=\"center\"> Username: ". $UN['username'] . "</p>");
                         $answerText = $currentAnswer['answerText'];
                         echo("<p id=\"center\">". $answerText . "</p>");
                     }
