@@ -8,7 +8,7 @@ $response['status'] = "";
 
 $vote = $_POST['vote'];
 $item = $_POST['item']; //item can be question or answer
-$userID = $_SESSION['userID']
+$userID = $_SESSION['userID'];
 
 // vote can be "up" or "down"
 //updates the old voteCount stored in database with voteCount +/- 1 depending on vote
