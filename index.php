@@ -73,10 +73,10 @@ include_once 'posts.php';
         let item = "";
         let questionID ="";
         let answerID = "";
-        if (id.slice(0,5) == "answer"){
+        if (id.slice(0,6) == "answer"){
             item = "answer";
-            answerID = id.slice(6,);
-            console.log(answerID);
+            answerID = id.slice(6);
+            console.log(id.slice(6));
         }
         else{
             item = "question";
@@ -108,17 +108,17 @@ include_once 'posts.php';
         }
 
         if (($(this).hasClass("up"))) {
-          count ++;
-          document.getElementById(questionID).innerHTML=count.toString();
+          // count ++;
+          // document.getElementById(questionID).innerHTML=count.toString();
           vote="up";
         }
 
         else if (($(this).hasClass("down"))){
-           count--;
-           document.getElementById(questionID).innerHTML=count.toString();
+           // count--;
+           // document.getElementById(questionID).innerHTML=count.toString();
            vote="down";
         }
-
+        alert(vote + " " + item + " " + questionID);
         $.post({ //Send the current vote count and questionID to POST
             type: "POST",
             data: "questionID=" + questionID + "&answerID=" + answerID + "&vote=" + vote + "&item=" + item,
@@ -128,11 +128,11 @@ include_once 'posts.php';
               if(msg.status=="success"){
                 if (vote=="up"){
                   count ++;
-                  document.getElementById(questionID).innerHTML=count.toString();
+                  document.getElementById(id).innerHTML=count.toString();
                 }
                 else{
                   count--;
-                  document.getElementById(questionID).innerHTML=count.toString();
+                  document.getElementById(id).innerHTML=count.toString();
                 }
               }
               else if (msg.status=="failed"){
