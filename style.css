@@ -266,7 +266,7 @@
 
 		.star {
 			visibility:hidden;
-			font-size:30px;
+			font-size:28px;
 			cursor:pointer;
 		}
 		.star:before {

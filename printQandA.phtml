@@ -41,10 +41,9 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
 
 
-					</div>
-                </div>
-				<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>
-
+	    </div>
+            </div>
+				
                 <?php
                 if($row_answers != 0) {
                     // print answers
@@ -70,10 +69,15 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         echo '<div class="vote roundrect">';
                         echo '<div class="increment up" name = "upvote"></div>';
                         echo '<div class="increment down"></div>';
+
                         if (isset($_POST['upvote'])){
                             $bestQuery = "UPDATE answers SET voteCount = (voteCount+1) WHERE answerID = $answerID and refQuestion = $questionID";
                             echo("Success");
                           }
+
+			echo '<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>';
+
+
 
                         echo '</div>';
 
@@ -104,7 +108,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         
                         echo("<p id=\"left\"> Username: ". $UN['username'] . "</p>");
                         $answerText = $currentAnswer['answerText'];
-                        echo("<p id=\"left\">". $answerText . "</p>");
+                        echo("<p id=\"center\">". $answerText . "</p>");
                     }
                     echo("</div>");
                     // close the result.
