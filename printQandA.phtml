@@ -63,10 +63,17 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         print_r($currentAnswer);
 
                         //upvote and down vote for answer
+                        $OP = $currentQ['asker'];
+                        $questionID = $currentQ['questionID'];
+                        $answerID = $currentAnswer['answerID'];
                         echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
                         echo '<div class="vote roundrect">';
-                        echo '<div class="increment up"></div>';
+                        echo '<div class="increment up" name = "upvote"></div>';
                         echo '<div class="increment down"></div>';
+                        if (isset($_POST['upvote'])){
+                            $bestQuery = "UPDATE answers SET voteCount = (voteCount+1) WHERE answerID = $answerID and refQuestion = $questionID";
+                            echo("Success");
+                          }
 
                         echo '</div>';
 
@@ -82,7 +89,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                                 $currentUser = $_SESSION['userID'];
                             
                                 if ($currentUser == $OP){
-                                  $bestQuery = "UPDATE answers SET isBest = 0 WHERE answerID = $answerID and refQuestion = $questionID";
+                                  $bestQuery = "UPDATE answers SET isBest = 1 WHERE answerID = $answerID and refQuestion = $questionID";
                                   echo("Success");
                                 }
                                 mysqli_query($db,$bestQuery);
