@@ -59,7 +59,7 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
                         mysqli_free_result($answerResult);
 
-                        print_r($currentAnswer);
+                       // print_r($currentAnswer);
 
                         //upvote and down vote for answer
                         $OP = $currentQ['asker'];
