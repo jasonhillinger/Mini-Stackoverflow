@@ -69,8 +69,21 @@ include_once 'posts.php';
       $(function(){
         $(".increment").click(function(){
 
-        let questionID = $("~ .count", this).attr("id");
-        let count = parseInt(document.getElementById(questionID).innerHTML);
+        let id = $("~ .count", this).attr("id");
+        let item = "";
+        let questionID ="";
+        let answerID = "";
+        if (id.slice(0,5) == "answer"){
+            item = "answer";
+            answerID = id.slice(6,);
+            console.log(answerID);
+        }
+        else{
+            item = "question";
+            questionID = id;
+            console.log(questionID);
+        }
+        let count = parseInt(document.getElementById(id).innerHTML);
         let vote = "";
 
         $.ajax({ //check if user is signed in
@@ -108,13 +121,29 @@ include_once 'posts.php';
 
         $.post({ //Send the current vote count and questionID to POST
             type: "POST",
-            data: "questionID=" + questionID + "&vote=" + vote,
-            url: "upVote.php"
+            data: "questionID=" + questionID + "&answerID=" + answerID + "&vote=" + vote + "&item=" + item,
+            url: "upVote.php",
+            async: false,
+            success: function (msg) {
+              if(msg.status=="success"){
+                if (vote=="up"){
+                  count ++;
+                  document.getElementById(questionID).innerHTML=count.toString();
+                }
+                else{
+                  count--;
+                  document.getElementById(questionID).innerHTML=count.toString();
+                }
+              }
+              else if (msg.status=="failed"){
+                //alert("You can only vote once");
+              }
+            }
         });
 
         $(this).parent().addClass("bump");
 
-        setTimeout(function(){
+        setInterval(function(){
           $(this).parent().removeClass("bump");
         }, 400);
         });

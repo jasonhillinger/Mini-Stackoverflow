@@ -31,21 +31,22 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
                 <div class="panel-heading" data-questionID="<?php echo($currentQ['questionID']); ?>" >
 
-                    <h4 id="left"> <?php echo($currentQ['title']); ?></h4>
-                    <p id="left"><?php echo($currentQ['questionText']); ?></p>
+                    <h4 align="left"> <?php echo($currentQ['title']); ?></h4>
+                    <p align="left"><?php echo($currentQ['questionText']); ?></p>
 					<div class="vote roundrect">
 					  <div class="increment up"></div>
-
             <div class="increment down"></div>
             <div class="count" id= "<?php echo($currentQ['questionID']);?>"> <?php echo($currentQ['voteCount']); ?> </div>
-
-
-
 					</div>
                 </div>
 
 
                 <?php
+
+                //getting user name of
+
+
+
                 if($row_answers != 0) {
                     // print answers
                     echo("<div class = \"panel-body\">");
@@ -72,8 +73,19 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         $currentAnswer = mysqli_fetch_assoc($answerResult);
                         mysqli_free_result($answerResult);
 
+                        $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
+                        $userPoster = mysqli_query($db, $userNameQuery);
+                        $UN = mysqli_fetch_assoc($userPoster);
 
-                       // print_r($currentAnswer);
+
+
+
+                        echo("<p id=\"center\"> Username: ". $UN['username'] . "</p>");
+                        $answerText = $currentAnswer['answerText'];
+                        echo("<p id=\"center\">". $answerText . "</p>");
+
+
+                      //  // print_r($currentAnswer);
                       //  $questionID = $currentQ['questionID'];
                       //   $answerID = $currentAnswer['answerID'];
                       // $voter = $_SESSION['userID'];
@@ -87,14 +99,11 @@ $askerName=mysqli_fetch_assoc($asker_result);
                       //
                       //   $hasVoted = $votes['hasVoted'];
                       //   $upvote1 = $votes['upVote'];
-                        echo '<p id="left">'.$currentAnswer['voteCount'].'</p>';
-                        echo '<div class="vote roundrect">';
-                        echo '<div class="increment up" name = "upvote"></div>';
-                        echo '<div class="increment down" name = "downvote"></div>';
-
-
-
-
+                        echo("<div class=\"vote roundrect\">
+              					  <div class=\"increment up\"></div>
+                          <div class=\"increment down\"></div>
+                          <div class=\"count\" id= \"answer" . $currentAnswer['answerID'] . "\">" . $currentAnswer['voteCount'] . "</div>
+              					");
 
 
 
@@ -111,16 +120,6 @@ $askerName=mysqli_fetch_assoc($asker_result);
                         }
 
 
-                        //getting user name of
-                        $userNameQuery = "SELECT * FROM users where userID = '$currentAnswer[answerer]'";
-                        $userPoster = mysqli_query($db, $userNameQuery);
-                        $UN = mysqli_fetch_assoc($userPoster);
-
-
-
-                        echo("<p id=\"center\"> Username: ". $UN['username'] . "</p>");
-                        $answerText = $currentAnswer['answerText'];
-                        echo("<p id=\"center\">". $answerText . "</p>");
                     }
                     echo("</div>");
                     // close the result.
