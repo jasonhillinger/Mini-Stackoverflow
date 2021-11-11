@@ -5,9 +5,7 @@
   $response = [];
 
   $best = $_POST['best'];
-
-  $questionID = $_POST['questionID'];
-  $OP = $_POST['userID'];
+  $answerID = $_POST['answerID'];
 
 
   //fetch questionID of reference question for the answer
@@ -46,15 +44,18 @@
   if (is_null($bestAns['bestAnswer'])){
     setBest($answerID, $questionID, $best, $db);
     $response['status'] = "Marked answer as best answer.";
+    $response['success'] = "true";
 
   }
   elseif ($best==0){
     setBest($answerID, $questionID, $best, $db);
     $response['status'] = "Unmarked best answer.";
+    $response['success'] = "true";
   }
   else{
     $response['status'] = "Cannot mark two answers as best answer for same question.";
+    $response['success'] = "false";
   }
   header('Content-type: application/json');
   echo (json_encode($response));
-
+?>
