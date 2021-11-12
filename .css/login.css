@@ -1,0 +1,92 @@
+body {
+	background-color: black;
+}
+
+.container {
+	border: 3px solid #303030;
+	padding: 20px;
+	width: 350 px;
+	text-align: center;
+	border-radius: 4px;
+	position: relative;
+	background: rgb(255, 255, 255);
+}
+
+.header img {
+	width: 1000px;
+	height: 200px;
+	background: no-repeat;
+	background-size: cover;
+	border: 6px solid #333;
+	margin: 20px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	color: #ddd;
+	text-align: center;
+}
+
+
+/* Style the top navigation bar */
+
+.navbar {
+	overflow: hidden;
+	background-color: rgb(15, 184, 23);
+}
+
+
+/* Style the navigation bar links */
+
+.navbar a {
+	float: left;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 20px;
+	text-decoration: none;
+}
+
+
+/* Right-aligned link */
+
+.navbar a.right {
+	float: right;
+}
+
+
+/* Change color on hover */
+
+.navbar a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+div {
+	margin-bottom: 10px;
+}
+
+label {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+}
+
+input {
+	display: inline;
+	font-family: "Montserrat";
+	font-size: 1.05;
+	border: 2px solid green;
+	border-radius: 5px;
+	width: 15%;
+	height: 1.5em;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	background-color: rgb(15, 184, 23);
+	color: white;
+}
