@@ -17,18 +17,18 @@ $userID = $_SESSION['userID'];
 
 if ($item == "question"){
   $questionID = $_POST['questionID'];
-  $fetchVoteQuery = "SELECT * FROM `votes` WHERE votes.voterID = '$userID' AND votes.questionID = '$questionID'";
+  $fetchVoteQuery = "SELECT * FROM votes WHERE votes.voterID = '$userID' AND votes.questionID = '$questionID'";
   $voteRes = mysqli_query($db, $fetchVoteQuery);
   $previousVote = mysqli_fetch_assoc($voteRes);
   if (($voteRes->num_rows) == 0){
     if ($vote=="up"){
-        $voteQuery = "INSERT INTO 'votes' (voterID, questionID, upVote) VALUES ($userID, $questionID, '1')";
+        $voteQuery = "INSERT INTO votes (voterID, questionID, upVote) VALUES ($userID, $questionID, '1')";
         mysqli_query($db, $voteQuery);
-        $updateQuery = "UPDATE 'questions' SET voteCount = (voteCount + 1) WHERE questionID = $questionID";
+        $updateQuery = "UPDATE questions SET voteCount = (voteCount + 1) WHERE questionID = $questionID";
         mysqli_query($db, $updateQuery);
     }
     else if ($vote=="down"){
-        $voteQuery = "INSERT INTO 'votes' (voterID, questionID, upVote) VALUES ('$userID' , '$questionID', '0')";
+        $voteQuery = "INSERT INTO votes (voterID, questionID, upVote) VALUES ('$userID' , '$questionID', '0')";
         mysqli_query($db, $voteQuery);
         $updateQuery = "UPDATE questions SET voteCount = (voteCount - 1) WHERE questionID = $questionID";
         mysqli_query($db, $updateQuery);
