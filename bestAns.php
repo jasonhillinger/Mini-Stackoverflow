@@ -7,7 +7,6 @@
   $best = $_POST['best'];
   $answerID = $_POST['answerID'];
 
-
   //fetch questionID of reference question for the answer
   $fetchRefQuestionQuery = "SELECT answers.refQuestion FROM answers WHERE answers.answerID = $answerID;";
   $questionRes = mysqli_query($db, $fetchRefQuestionQuery);
@@ -25,7 +24,6 @@
   // Best can be either 0 or 1
   // the user who is logged in must have the same userID as the poster to be able to set best answer
   //this fucntion sets the answer as bestanswer for corresponding question and for answer itself
-
       if ($Best == 1){
         $isBestQuery = "UPDATE answers SET isBest = 1 WHERE answerID = $aID";
         $bestAQuery = "UPDATE questions SET bestAnswer = $aID WHERE questionID = $qID";
