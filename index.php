@@ -118,7 +118,7 @@ include_once 'posts.php';
            // document.getElementById(questionID).innerHTML=count.toString();
            vote="down";
         }
-        alert(vote + " " + item + " " + questionID);
+        //alert(vote + " " + item + " " + questionID);
         $.post({ //Send the current vote count and questionID to POST
             type: "POST",
             data: "questionID=" + questionID + "&answerID=" + answerID + "&vote=" + vote + "&item=" + item,
