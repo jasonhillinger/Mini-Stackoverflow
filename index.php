@@ -12,11 +12,11 @@ include_once 'posts.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <link href=".css/index.css" rel="stylesheet">
     <script type="text/javascript">
 
 
-      const onClick = (event) => {
+      const onClick = (event) => { //Function that will trigger if user clicks on any star (best answer icon) on page
         if (event.target.nodeName === 'path') {
           let OP = 0;
           let answerID = event.target.id.slice(4);
@@ -38,13 +38,16 @@ include_once 'posts.php';
           if(OP){//if user is the original poster of the question
             console.log(answerID);
             let best=0;//if best is 0, user is unmarking as best, if best=1 user is marking as best
-            if (document.getElementById(event.target.id).getAttribute("fill") == "gold"){
-              best = 0;
+            if (event.target.getAttribute("fill") == "gold"){
+                //console.log("current fill="+event.target.getAttribute("fill"));
+                best = 0;
             }
             else{
+                //console.log("current fill="+event.target.getAttribute("fill"));
               best = 1;
             }
-            $.post({ //Send the chosen best Answer answerID to POST to bestAns.php
+            console.log("best="+best);
+            $.ajax({ //Send the chosen best Answer answerID to POST to bestAns.php
                 type: "POST",
                 data: "answerID=" + answerID + "&best=" + best,
                 url: "bestAns.php",
@@ -57,6 +60,7 @@ include_once 'posts.php';
                     document.getElementById(event.target.id).setAttribute("fill", "gold");
                   }
                   alert(msg.status);
+                  console.log(msg.success);
                 }
 
             });
@@ -118,8 +122,9 @@ include_once 'posts.php';
            // document.getElementById(questionID).innerHTML=count.toString();
            vote="down";
         }
-        //alert(vote + " " + item + " " + questionID);
-        $.post({ //Send the current vote count and questionID to POST
+
+        $.ajax({ //Send the current vote count and questionID to POST
+
             type: "POST",
             data: "questionID=" + questionID + "&answerID=" + answerID + "&vote=" + vote + "&item=" + item,
             url: "upVote.php",
@@ -151,7 +156,6 @@ include_once 'posts.php';
         </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
