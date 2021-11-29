@@ -162,7 +162,7 @@ include_once 'posts.php';
 
     <div class="header">
         <img src="tech2.jpg" alt="logo" class="src">
-        <h1><b>Welcome to Tech hut</b></h1>
+        <h1><b>Welcome to Tech Hut</b></h1>
 
     </div>
 
