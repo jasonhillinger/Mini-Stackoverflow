@@ -1,6 +1,8 @@
 <?php
 include_once "server.php";
+
 session_start(); //start a new session if not already started
+include "fetchProfile.php";
 $errors = [];
 
 // Verifying data entered is correct (with data in database) and logging in the user
@@ -13,19 +15,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_check_query = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($db, $email_check_query);
     $user = mysqli_fetch_assoc($result); //retrieves all user data stored in the result from SQL query
+    mysqli_free_result($result);
     $password_from_db = $user["password"]; //get the password stored in db
 
     if (!$user) {
         //if not user is found for this email address
         array_push($errors, "No account with this email can be found.<br>");
-    } elseif ($password_from_db != $password) {
+    }
+    elseif ($password_from_db != $password) {
         //if password entered does not match password stored in db
         array_push($errors, "Wrong password.<br>");
-    } else {
-        //Login the user by saving the logged in user data to the _SESSION array
-        $_SESSION["userID"] = $user["userID"];
-        $_SESSION["username"] = $user["username"];
-        $_SESSION["email"] = $user["email"];
+    }
+    else {
+        //Login the user by saving the logged in user data (profile) to the _SESSION
+        //array by calling the fetchProfile function.
+        fetchProfile($email);
     }
     if (count($errors) != 0) {
         //If any errors were caught, print out the corresponding error messages, and refresh page
@@ -92,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <?php
                       //Check if user is logged in, if so display welcome text and redirect to homepage
                       if (isset($_SESSION["username"])) {
-                          echo "Login successful.<br>Welcome<strong>" . $_SESSION["username"] . "</strong>!  You will be redirected to the homepage momentarily.<br>";
+                          echo "Login successful.<br>Welcome <strong>" . $_SESSION["username"] . "</strong>!  You will be redirected to the homepage momentarily.<br>";
                           echo "<meta http-equiv=\"refresh\" content=\"5; url=index.php\" />";
                       }
                       ?>
