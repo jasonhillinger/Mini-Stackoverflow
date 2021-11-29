@@ -214,7 +214,7 @@ include_once 'posts.php';
                     <div class=\"col-sm-3 well\">
                     <div class=\"well\">
                         <p><a href=\"#\">". $_SESSION["username"] ."</a></p>
-                    <img src=\"download.png\" class=\"img-circle\" height=\"65\" width=\"65\" alt=\"Avatar\">
+					<a href='profile_page.html'><img src=\"download.png\" class=\"img-circle\" height=\"65\" width=\"65\" alt=\"Avatar\"></a>
                     </div>
                     <div class=\"well\">
                         <p><a href=\"#\">Tags</a></p>
