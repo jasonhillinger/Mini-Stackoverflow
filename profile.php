@@ -28,6 +28,7 @@ $memberSince = strtotime($_SESSION["time_created"]);
 	  margin: auto;
 	  text-align: center;
 	  font-family: arial;
+        padding-bottom: 15px;
 	}
 
     .header img {
@@ -79,7 +80,7 @@ $memberSince = strtotime($_SESSION["time_created"]);
     }
 
 	.title {
-	  color: black(15, 184, 23);
+	  color: rgb(15, 184, 23);
 	  font-size: 18px;
 	}
 
@@ -99,10 +100,11 @@ $memberSince = strtotime($_SESSION["time_created"]);
 	  background-color: rgb(15, 184, 23);
 	  color: white;
 	  text-align: center;
+      margin-top: 50px;
 	}
 	a {
 	  text-decoration: none;
-	  font-size: 18px;
+	  /*font-size: 18px;*/
 	  color: white;
 	}
 	footer {
@@ -127,7 +129,7 @@ $memberSince = strtotime($_SESSION["time_created"]);
 	}
 	</style>
 
-	</head>
+</head>
 <body>
     <body style="background-color:black;">
     <div class="header">
@@ -152,8 +154,7 @@ $memberSince = strtotime($_SESSION["time_created"]);
 <h1 style="text-align:center" >User Profile </h1>
 
 <div class="card">
-
-    <img class="card-img-top" src="download.png" alt="Profile Picture" style="width:75%" >
+    <img class="card-img-top" src="data:image/jpeg;base64, <?php echo fetchProfilePic($_SESSION["username"]); ?>" alt="Profile Picture" style="width:75%">
     <h2><?php echo $_SESSION["username"]; ?></h2>
     <p class="title">Registered Tech Hut User <span>&#10003;</span></p>
 

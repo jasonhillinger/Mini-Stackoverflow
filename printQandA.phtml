@@ -17,12 +17,12 @@ $askerName=mysqli_fetch_assoc($asker_result);
 
 
 <div class="row">
-    <div class="col-sm-1">
-    </div>
-    <div class="col-sm-2">
+<!--    <div class="col-sm-1">-->
+<!--    </div>-->
+    <div class="col-sm-2" style="margin-left: 30px">
         <div class="well">
             <p><?php echo($askerName['username']); ?></p>
-            <a href='profile_page.html'><img src="download.png" class="img-circle" height="55" width="55" alt="Avatar"></a>
+            <img class="img-circle" src="data:image/jpeg;base64, <?php echo fetchProfilePic($askerName['username']) ?>" alt="Profile Picture" height="55" width="55">
         </div>
     </div>
     <div class="col-sm-9">

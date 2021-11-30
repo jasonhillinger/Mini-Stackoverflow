@@ -15,4 +15,14 @@
     mysqli_free_result($resultProfile);
   }
 
+  function fetchProfilePic($username) {
+    include "server.php";
+    $picQuery = "SELECT profile_pic FROM users where username = '$username'"; //Fetches user info from database.
+
+    $resultPic = mysqli_query($db, $picQuery);
+    $userProfilePic = mysqli_fetch_assoc($resultPic); //retrieves all user data stored in the result from SQL query
+    $picture = base64_encode($userProfilePic["profile_pic"]);
+    mysqli_free_result($resultPic);
+    return $picture;
+  }
 
