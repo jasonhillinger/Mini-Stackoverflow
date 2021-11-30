@@ -2,6 +2,7 @@
 include_once 'server.php';
 session_start(); //start a new session if not already started
 include_once 'posts.php';
+include 'fetchProfile.php';
 ?>
 
 <!DOCTYPE html>
@@ -214,7 +215,8 @@ include_once 'posts.php';
                     <div class=\"col-sm-3 well\">
                     <div class=\"well\">
                         <p><a href=\"#\">". $_SESSION["username"] ."</a></p>
-                    <img src=\"download.png\" class=\"img-circle\" height=\"65\" width=\"65\" alt=\"Avatar\">
+                    <img class=\"img-circle\" src=\"data:image/jpeg;base64, " . fetchProfilePic($_SESSION["username"]) . "\" alt=\"Profile Picture\" height=\"65\" width=\"65\">
+
                     </div>
                     <div class=\"well\">
                         <p><a href=\"#\">Tags</a></p>
