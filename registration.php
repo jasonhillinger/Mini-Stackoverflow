@@ -32,7 +32,7 @@ include_once 'addRegistration.php';
         <?php
             if (isset($_SESSION["userID"])){
             	echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
-            	echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+            	echo("<a href=\"profile.php\" class=\"right\">". $_SESSION["username"] ."</a>");
             }
             else{
                 echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
