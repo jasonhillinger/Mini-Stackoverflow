@@ -20,6 +20,10 @@ $memberSince = strtotime($_SESSION["time_created"]);
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src=".js/profile.js"></script>
 	<style>
 	.card {
 	  box-shadow: 0 4px 8px white;
@@ -30,6 +34,23 @@ $memberSince = strtotime($_SESSION["time_created"]);
 	  font-family: arial;
         padding-bottom: 15px;
 	}
+    .panel{
+        box-shadow: 0 4px 8px white;
+        background-color: blueviolet;
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+    .panel > .panel-heading{
+        background-image: none;
+        background-color: blueviolet;
+    }
+    .panel > .panel-footer{
+        background-image: none;
+        background-color: rgb(15, 184, 23);
+    }
+
 
     .header img {
         width: 1000px;
@@ -109,19 +130,33 @@ $memberSince = strtotime($_SESSION["time_created"]);
 	}
 	footer {
 		text-align: center;
-		padding: 1px;
+		padding: 15px 0;
 		background-color: rgb(15, 184, 23);
 		color: white;
 	}
 	button:hover, a:hover {
 	  opacity: 0.7;
 	}
-	.h1{
+	.panel h2{
 		color: black;
 	}
 	h1{
 		color: rgb(15, 184, 23);
 	}
+    .modal-footer{
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+    .panel p{
+        color: black;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+    .panel h4{
+        margin-top: 0px;
+        color: black;
+        font-size: 17px;
+    }
 
 	span {
 	  content: "\2713";
@@ -153,46 +188,54 @@ $memberSince = strtotime($_SESSION["time_created"]);
     </div>
 <h1 style="text-align:center" >User Profile </h1>
 
-<div class="card">
-    <img class="card-img-top" src="data:image/jpeg;base64, <?php echo fetchProfilePic($_SESSION["username"]); ?>" alt="Profile Picture" style="width:75%">
-    <h2><?php echo $_SESSION["username"]; ?></h2>
-    <p class="title">Registered Tech Hut User <span>&#10003;</span></p>
+<form action="#" method="post">
+<div class="panel panel-default">
 
-    <div class="modal-footer"></div>
-    <h4>About me:</h4>
-    <p> <?php echo $_SESSION["about"]; ?> </p>
-    <div class="modal-footer"></div>
-    <h4>Email:</h4>
-    <p> <?php echo $_SESSION["email"]; ?> </p>
-    <div class="modal-footer"></div>
-    <h4>User ID:</h4>
-    <p> <?php echo $_SESSION["userID"]; ?> </p>
-    <div class="modal-footer"></div>
-    <h4>Member Since:</h4>
-    <p> <?php echo date('m/d/Y', $memberSince); ?> </p>
+    <div class="panel-heading">
+        <img class="card-img-top" id="profilePic" src="data:image/jpeg;base64, <?php echo fetchProfilePic($_SESSION["username"]); ?>" alt="Profile Picture" style="width:75%">
+        <div id="editImage" hidden>
+            <p style="text-align: left; margin-bottom: 5px">Upload a profile picture</p>
+            <input id="newPic" type="file" accept="image/png, image/jpeg" />
+        </div>
+        <div id="username">
+            <h2><?php echo $_SESSION["username"]; ?></h2>
+        </div>
+        <textarea style="display: none; margin-top: 15px" class="form-control" id="usernameText" rows="1" cols="20" style="font-size: 20px"
+        ><?php echo $_SESSION["username"]; ?></textarea>
+    </div>
+    <div class="panel-body">
+        <h4>About me:</h4>
+        <p id="aboutMe"> <?php echo $_SESSION["about"]; ?> </p>
+        <textarea style="display: none;" class="form-control" id="aboutText" rows="3"><?php echo $_SESSION["about"]; ?></textarea>
+        <div class="modal-footer"></div>
+        <h4>Email:</h4>
+        <p> <?php echo $_SESSION["email"]; ?> </p>
+        <div class="modal-footer"></div>
+        <h4>User ID:</h4>
+        <p> <?php echo $_SESSION["userID"]; ?> </p>
+        <div class="modal-footer"></div>
+        <h4 class="title">Registered Tech Hut User <span style="color: rgb(15, 184, 23)">&#10003;</span></h4>
+        <h4>Member Since:</h4>
+        <p> <?php echo date('m/d/Y', $memberSince); ?> </p>
+    </div>
+    <div class="panel-footer" >
+        <div class="row justify-content-center">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-default" id="editButton" onclick="editProfile()">Edit Profile</button>
+                <button style="display: none;" type="submit" class="btn btn-default" id="submitButton" >Submit Changes</button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
 
-
-<!-- <div class="w3-card w3-round w3-white w3-hide-small">-->
-<!--    <div class="w3-container">-->
-<!--      <p>User InfoHere are some of my interests</p>-->
-<!--      <p>-->
-<!--        <span class="w3-tag w3-small w3-theme-d5">Tech</span>-->
-<!--        <span class="w3-tag w3-small w3-theme-d4">Questions</span>-->
-<!--        <span class="w3-tag w3-small w3-theme-d3">Labels</span>-->
-<!--        <span class="w3-tag w3-small w3-theme-d2">Games</span>-->
-<!--        <span class="w3-tag w3-small w3-theme-d1">Friends</span>-->
-<!--        <span class="w3-tag w3-small w3-theme">Games</span>-->
-<!---->
-<!--      </p>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <p><button>Click to Dm me ≧◡≦</button></p>-->
 </div>
+</form>
 
 
 
 <footer class="footer">
-    <p>Project by Team 01 for SOEN 341  <a>https://github.com/jasonhillinger/soen341project</a></p>
+    <p style="font-size: 16px">Project by Team 01 for SOEN 341  <a>https://github.com/jasonhillinger/soen341project</a></p>
 </footer>
 </body>
 
