@@ -5,6 +5,7 @@ if (!isset($_SESSION["username"])){
     header('location: index.php');
 }
 include 'fetchProfile.php';
+include 'updateProfile.php';
 fetchProfile($_SESSION['email']);
 $memberSince = strtotime($_SESSION["time_created"]);
 ?>
@@ -45,10 +46,12 @@ $memberSince = strtotime($_SESSION["time_created"]);
     .panel > .panel-heading{
         background-image: none;
         background-color: blueviolet;
+        text-align: center;
     }
     .panel > .panel-footer{
         background-image: none;
         background-color: rgb(15, 184, 23);
+        text-align: center;
     }
 
 
@@ -137,9 +140,12 @@ $memberSince = strtotime($_SESSION["time_created"]);
 	button:hover, a:hover {
 	  opacity: 0.7;
 	}
-	.panel h2{
+    h2{
 		color: black;
 	}
+    h3{
+        color: black;
+    }
 	h1{
 		color: rgb(15, 184, 23);
 	}
@@ -176,7 +182,7 @@ $memberSince = strtotime($_SESSION["time_created"]);
           echo("
 			<a href=\"logout.php\" class=\"right\">Logout</a>");
           echo("
-			<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+			<a href=\"profile.php\" class=\"right\">". $_SESSION["username"] ."</a>");
         }
         else{
           echo("
@@ -192,21 +198,40 @@ $memberSince = strtotime($_SESSION["time_created"]);
 <div class="panel panel-default">
 
     <div class="panel-heading">
-        <img class="card-img-top" id="profilePic" src="data:image/jpeg;base64, <?php echo fetchProfilePic($_SESSION["username"]); ?>" alt="Profile Picture" style="width:75%">
+        <img class="card-img-top" id="profilePic" src="data:image/jpeg;base64, <?php echo fetchProfilePic($_SESSION["username"]); ?>" alt="Profile Picture" style="width:75%; max-width: 300px; max-height: 300px;">
         <div id="editImage" hidden>
-            <p style="text-align: left; margin-bottom: 5px">Upload a profile picture</p>
-            <input id="newPic" type="file" accept="image/png, image/jpeg" />
+            <div class="row justify-content-center" style="margin-top: 5px">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <p style="text-align: left; margin-bottom: 5px">Upload a profile picture</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <input id="newPic" name="newPic" type="file" accept="image/png, image/jpeg" />
+                </div>
+            </div>
         </div>
         <div id="username">
             <h2><?php echo $_SESSION["username"]; ?></h2>
         </div>
-        <textarea style="display: none; margin-top: 15px" class="form-control" id="usernameText" rows="1" cols="20" style="font-size: 20px"
-        ><?php echo $_SESSION["username"]; ?></textarea>
+        <div style="display: none" id="usernameText" class="row justify-content-center">
+            <div class="col-sm-4">
+                <h3>Username:</h3>
+            </div>
+            <div class="col-sm-8">
+
+                <textarea style="font-size: 18px; margin-top: 10px" id="newUsername" name="newUsername" class="form-control" rows="1"
+                ><?php echo $_SESSION["username"]; ?></textarea>
+            </div>
+        </div>
+
     </div>
     <div class="panel-body">
         <h4>About me:</h4>
         <p id="aboutMe"> <?php echo $_SESSION["about"]; ?> </p>
-        <textarea style="display: none;" class="form-control" id="aboutText" rows="3"><?php echo $_SESSION["about"]; ?></textarea>
+        <textarea style="display: none; width: 80%" class="form-control" id="aboutText" name="aboutText" rows="3"><?php echo $_SESSION["about"]; ?></textarea>
         <div class="modal-footer"></div>
         <h4>Email:</h4>
         <p> <?php echo $_SESSION["email"]; ?> </p>
