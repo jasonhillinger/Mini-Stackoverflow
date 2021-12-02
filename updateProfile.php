@@ -30,5 +30,8 @@
         $updateNoPic = "UPDATE users SET username = '$newUsername', about = '$newAbout' WHERE users.userID = $userID";
         mysqli_query($db,$updateNoPic);
       }
+      //Update the data stored in the session
+      $_SESSION['username'] = $newUsername;
+
     }
   }

@@ -172,7 +172,7 @@ include 'fetchProfile.php';
         <?php
       		if (isset($_SESSION["userID"])){
       			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
-      			echo("<a href=\"#\" class=\"right\">". $_SESSION["username"] ."</a>");
+      			echo("<a href=\"profile.php?userID=". $_SESSION["userID"] ."\" class=\"right\">". $_SESSION["username"] ."</a>");
       		}
       		else{
             echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
@@ -214,8 +214,8 @@ include 'fetchProfile.php';
                         echo("
                     <div class=\"col-sm-3 well\">
                     <div class=\"well\">
-                        <p><a href=\"#\">". $_SESSION["username"] ."</a></p>
-                    <img class=\"img-circle\" src=\"data:image/jpeg;base64, " . fetchProfilePic($_SESSION["username"]) . "\" alt=\"Profile Picture\" height=\"65\" width=\"65\">
+                        <p><a href=\"profile.php?userID=". $_SESSION["userID"] ."\">". $_SESSION["username"] ."</a></p>
+                    <a href=\"profile.php?userID=". $_SESSION["userID"] ."\"><img class=\"img-circle\" src=\"data:image/jpeg;base64, " . fetchProfilePic($_SESSION["username"]) . "\" alt=\"Profile Picture\" height=\"65\" width=\"65\"></a>
 
                     </div>
                     <div class=\"well\">
