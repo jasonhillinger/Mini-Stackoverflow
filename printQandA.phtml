@@ -7,7 +7,7 @@ $result_numAnswers = mysqli_query($db, $numAnswersQuery);
 $ans = mysqli_fetch_assoc($result_numAnswers);
 $row_answers = mysqli_num_rows($result_numAnswers);
 
-$asker_query = "SELECT username FROM users where userID = '$currentQ[asker]'";
+$asker_query = "SELECT username, userID FROM users where userID = '$currentQ[asker]'";
 $asker_result = mysqli_query($db, $asker_query);
 $askerName=mysqli_fetch_assoc($asker_result);
 
@@ -21,8 +21,9 @@ $askerName=mysqli_fetch_assoc($asker_result);
 <!--    </div>-->
     <div class="col-sm-2" style="margin-left: 30px">
         <div class="well">
-            <p><?php echo($askerName['username']); ?></p>
-            <img class="img-circle" src="data:image/jpeg;base64, <?php echo fetchProfilePic($askerName['username']) ?>" alt="Profile Picture" height="55" width="55">
+            <p><?php echo("<a href=\"profile.php?userID=". $askerName["userID"] ."\">". $askerName["username"] ."</a>"); ?></p>
+            <a href="profile.php?userID=<?php echo $askerName["userID"]?>"><img class="img-circle" src="data:image/jpeg;base64, <?php echo fetchProfilePic($askerName['username']) ?>" alt="Profile Picture" height="55" width="55"></a>
+            <p style="margin-top: 10px;">Asked:</p>
         </div>
     </div>
     <div class="col-sm-9">

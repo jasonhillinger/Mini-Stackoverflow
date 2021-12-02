@@ -1,13 +1,32 @@
 <?php
-include_once "server.php";
-session_start(); //start a new session if not already started
-if (!isset($_SESSION["username"])){
+  include_once "server.php";
+  session_start(); //start a new session if not already started
+  $editable = false;
+  if (isset($_GET['userID'])){
+    if ($_GET['userID'] != "") {
+      if (isset($_SESSION["username"])) {
+        if ($_SESSION["userID"] === $_GET['userID']) {//Check if the current signed-in user is the same as the user of the profile page
+          $editable = true; //if the current signed-in user is the same as the user of the profile page, profile will be editable
+        }
+      }
+      $profileID = $_GET['userID'];
+    }
+    else{//Else no userID in URL for profile page, redirect to homepage
+      header('location: index.php');
+    }
+  }
+
+  else{//Else no userID in URL for profile page, redirect to homepage
     header('location: index.php');
-}
-include 'fetchProfile.php';
-include 'updateProfile.php';
-fetchProfile($_SESSION['email']);
-$memberSince = strtotime($_SESSION["time_created"]);
+  }
+
+
+
+  include 'fetchProfile.php';
+  include 'updateProfile.php';
+  $profile = getProfilebyID($profileID);
+
+  $memberSince = strtotime($profile["time_created"]);
 ?>
 
 
@@ -198,7 +217,7 @@ $memberSince = strtotime($_SESSION["time_created"]);
     <div class="panel panel-default">
 
     <div class="panel-heading">
-        <img class="card-img-top" id="profilePic" src="data:image/jpeg;base64, <?php echo fetchProfilePic($_SESSION["username"]); ?>" alt="Profile Picture" style="width:75%; max-width: 300px; max-height: 300px;">
+        <img class="card-img-top" id="profilePic" src="data:image/jpeg;base64, <?php echo fetchProfilePic($profile["username"]); ?>" alt="Profile Picture" style="width:75%; max-width: 300px; max-height: 300px;">
         <div id="editImage" hidden>
             <div class="row justify-content-center" style="margin-top: 5px">
                 <div class="col-sm-3"></div>
@@ -214,7 +233,7 @@ $memberSince = strtotime($_SESSION["time_created"]);
             </div>
         </div>
         <div id="username">
-            <h2><?php echo $_SESSION["username"]; ?></h2>
+            <h2><?php echo $profile["username"]; ?></h2>
         </div>
         <div style="display: none" id="usernameText" class="row justify-content-center">
             <div class="col-sm-4">
@@ -223,27 +242,27 @@ $memberSince = strtotime($_SESSION["time_created"]);
             <div class="col-sm-8">
 
                 <textarea style="font-size: 18px; margin-top: 10px" id="newUsername" name="newUsername" class="form-control" rows="1"
-                ><?php echo $_SESSION["username"]; ?></textarea>
+                ><?php echo $profile["username"]; ?></textarea>
             </div>
         </div>
 
     </div>
     <div class="panel-body">
         <h4>About me:</h4>
-        <p id="aboutMe"> <?php echo $_SESSION["about"]; ?> </p>
-        <textarea style="display: none; width: 80%" class="form-control" id="aboutText" name="aboutText" rows="3"><?php echo $_SESSION["about"]; ?></textarea>
+        <p id="aboutMe"> <?php echo $profile["about"]; ?> </p>
+        <textarea style="display: none; width: 80%" class="form-control" id="aboutText" name="aboutText" rows="3"><?php echo $profile["about"]; ?></textarea>
         <div class="modal-footer"></div>
         <h4>Email:</h4>
-        <p> <?php echo $_SESSION["email"]; ?> </p>
+        <p> <?php echo $profile["email"]; ?> </p>
         <div class="modal-footer"></div>
         <h4>User ID:</h4>
-        <p> <?php echo $_SESSION["userID"]; ?> </p>
+        <p> <?php echo $profile["userID"]; ?> </p>
         <div class="modal-footer"></div>
         <h4 class="title">Registered Tech Hut User <span style="color: rgb(15, 184, 23)">&#10003;</span></h4>
         <h4>Member Since:</h4>
         <p> <?php echo date('m/d/Y', $memberSince); ?> </p>
     </div>
-    <div class="panel-footer" >
+    <div class="panel-footer" <?php if(!$editable) {echo "style=\"display:none;\"";} ?> >
         <div class="row justify-content-center">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
