@@ -192,10 +192,10 @@ $memberSince = strtotime($_SESSION["time_created"]);
         }
       ?>
     </div>
-<h1 style="text-align:center" >User Profile </h1>
+    <h1 style="text-align:center" >User Profile </h1>
 
-<form action="#" method="post">
-<div class="panel panel-default">
+    <form action="#" method="post" enctype="multipart/form-data">
+    <div class="panel panel-default">
 
     <div class="panel-heading">
         <img class="card-img-top" id="profilePic" src="data:image/jpeg;base64, <?php echo fetchProfilePic($_SESSION["username"]); ?>" alt="Profile Picture" style="width:75%; max-width: 300px; max-height: 300px;">
@@ -254,14 +254,13 @@ $memberSince = strtotime($_SESSION["time_created"]);
         </div>
     </div>
 
-</div>
-</form>
+    </div>
+    </form>
 
 
 
-<footer class="footer">
-    <p style="font-size: 16px">Project by Team 01 for SOEN 341  <a>https://github.com/jasonhillinger/soen341project</a></p>
-</footer>
+    <footer class="footer">
+        <p style="font-size: 16px">Project by Team 01 for SOEN 341  <a>https://github.com/jasonhillinger/soen341project</a></p>
+    </footer>
 </body>
-
 </html>
