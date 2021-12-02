@@ -6,22 +6,7 @@ include_once 'addRegistration.php';
 <html lang="en">
     <head>
         <link href=".css/login.css" rel="stylesheet">
-        <script type = "text/javascript">
-            function check(){ //checks if password and confirm password values match, if so notifies user by indicating passwords match
-                if ((document.getElementById("password").value.length >= 8) && (document.getElementById('confirm_password').value.length >= 8)){
-                  if (document.getElementById("password").value == document.getElementById('confirm_password').value) {
-                    document.getElementById("match").style.color = "green";
-                    document.getElementById("match").innerHTML = "Passwords match.";
-                    document.getElementById("submit").type = "submit"; //only if passwords match, submit button will submit the form
-                  }
-                  else {
-                    document.getElementById("match").style.color = "red";
-                    document.getElementById("match").innerHTML = "Passwords do not match.";
-                    document.getElementById("submit").type = "button";
-                  }
-                }
-            }
-        </script>
+        <script> src=".js/registration.js" </script>
     </head>
     </div>
     <div class="header">
@@ -29,16 +14,15 @@ include_once 'addRegistration.php';
     </div>
     <div class="navbar">
         <a href="index.php">Home</a>
-        <?php
+          <?php
             if (isset($_SESSION["userID"])){
-            	echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
-            	echo("<a href=\"profile.php\" class=\"right\">". $_SESSION["username"] ."</a>");
+              echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+              echo("<a href=\"profile.php?userID=". $_SESSION["userID"] ."\" class=\"right\">". $_SESSION["username"] ."</a>");
             }
             else{
-                echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
-                echo("<a href=\"login.php\" class=\"right\">Login</a>");
-              }
-            ?>
+              echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
+              echo("<a href=\"login.php\" class=\"right\">Login</a>");
+            }?>
     </div>
     <body>
         <div class="container text-center">

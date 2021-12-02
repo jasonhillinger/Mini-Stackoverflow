@@ -41,154 +41,10 @@
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href=".css/profile.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src=".js/profile.js"></script>
-	<style>
-	.card {
-	  box-shadow: 0 4px 8px white;
-	  background-color: blueviolet;
-	  max-width: 400px;
-	  margin: auto;
-	  text-align: center;
-	  font-family: arial;
-        padding-bottom: 15px;
-	}
-    .panel{
-        box-shadow: 0 4px 8px white;
-        background-color: blueviolet;
-        max-width: 400px;
-        margin: auto;
-        text-align: center;
-        font-family: arial;
-    }
-    .panel > .panel-heading{
-        background-image: none;
-        background-color: blueviolet;
-        text-align: center;
-    }
-    .panel > .panel-footer{
-        background-image: none;
-        background-color: rgb(15, 184, 23);
-        text-align: center;
-    }
-
-
-    .header img {
-        width: 1000px;
-        height: 200px;
-        background: no-repeat;
-        background-size: cover;
-        border: 6px solid #333;
-        margin: 20px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        color: #ddd;
-        text-align: center;
-    }
-
-    /* Style the top navigation bar */
-
-    .navbar {
-        overflow: hidden;
-        background-color: rgb(15, 184, 23);
-    }
-
-
-    /* Style the navigation bar links */
-
-    .navbar a {
-        float: left;
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 20px;
-        text-decoration: none;
-    }
-
-
-    /* Right-aligned link */
-
-    .navbar a.right {
-        float: right;
-    }
-
-
-    /* Change color on hover */
-
-    .navbar a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-	.title {
-	  color: rgb(15, 184, 23);
-	  font-size: 18px;
-	}
-
-	button {
-	  border: none;
-	  outline: 0;
-	  display: inline-block;
-	  padding: 8px;
-	  color: white;
-	  background-color: #000;
-	  text-align: center;
-	  cursor: pointer;
-	  width: 100%;
-	  font-size: 18px;
-	}
-	.footer {
-	  background-color: rgb(15, 184, 23);
-	  color: white;
-	  text-align: center;
-      margin-top: 50px;
-	}
-	a {
-	  text-decoration: none;
-	  /*font-size: 18px;*/
-	  color: white;
-	}
-	footer {
-		text-align: center;
-		padding: 15px 0;
-		background-color: rgb(15, 184, 23);
-		color: white;
-	}
-	button:hover, a:hover {
-	  opacity: 0.7;
-	}
-    h2{
-		color: black;
-	}
-    h3{
-        color: black;
-    }
-	h1{
-		color: rgb(15, 184, 23);
-	}
-    .modal-footer{
-        padding: 0px;
-        margin-bottom: 20px;
-    }
-    .panel p{
-        color: black;
-        font-size: 15px;
-        margin-bottom: 15px;
-    }
-    .panel h4{
-        margin-top: 0px;
-        color: black;
-        font-size: 17px;
-    }
-
-	span {
-	  content: "\2713";
-	  color: lightskyblue;
-	}
-	</style>
-
 </head>
 <body>
     <body style="background-color:black;">
@@ -196,20 +52,16 @@
         <img src="tech2.jpg" alt="logo" class="src">
     </div>
     <div class="navbar">
-        <a href="index.php">Home</a> <?php
+        <a href="index.php">Home</a>
+      <?php
         if (isset($_SESSION["userID"])){
-          echo("
-			<a href=\"logout.php\" class=\"right\">Logout</a>");
-          echo("
-			<a href=\"profile.php\" class=\"right\">". $_SESSION["username"] ."</a>");
+          echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+          echo("<a href=\"profile.php?userID=". $_SESSION["userID"] ."\" class=\"right\">". $_SESSION["username"] ."</a>");
         }
         else{
-          echo("
-			<a href=\"registration.php\" class=\"right\" >Register</a>");
-          echo("
-			<a href=\"login.php\" class=\"right\">Login</a>");
-        }
-      ?>
+          echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
+          echo("<a href=\"login.php\" class=\"right\">Login</a>");
+        }?>
     </div>
     <h1 style="text-align:center" >User Profile </h1>
 

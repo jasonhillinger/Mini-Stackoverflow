@@ -53,15 +53,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<img src="tech2.jpg" alt="logo" class="src">
 	</div>
 	<div class="navbar">
-		<a href="index.php">Home</a> <?php
-      		if (isset($_SESSION["userID"])){
-      			echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
-      			echo("<a href=\"profile\" class=\"right\">". $_SESSION["username"] ."</a>");
-      		}
-      		else{
-                echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
-                echo("<a href=\"login.php\" class=\"right\">Login</a>");
-            } ?>
+		<a href="index.php">Home</a>
+          <?php
+            if (isset($_SESSION["userID"])){
+              echo("<a href=\"logout.php\" class=\"right\">Logout</a>");
+              echo("<a href=\"profile.php?userID=". $_SESSION["userID"] ."\" class=\"right\">". $_SESSION["username"] ."</a>");
+            }
+            else{
+              echo("<a href=\"registration.php\" class=\"right\" >Register</a>");
+              echo("<a href=\"login.php\" class=\"right\">Login</a>");
+            }?>
 	</div>
 	<body>
 		<div class="container text-center">
