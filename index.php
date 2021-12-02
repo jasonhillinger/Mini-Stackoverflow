@@ -214,6 +214,7 @@ include 'fetchProfile.php';
                         echo("
                     <div class=\"col-sm-3 well\">
                     <div class=\"well\">
+
                         <p><a href=\"profile.php?userID=". $_SESSION["userID"] ."\">". $_SESSION["username"] ."</a></p>
                     <a href=\"profile.php?userID=". $_SESSION["userID"] ."\"><img class=\"img-circle\" src=\"data:image/jpeg;base64, " . fetchProfilePic($_SESSION["username"]) . "\" alt=\"Profile Picture\" height=\"65\" width=\"65\"></a>
 
